@@ -12,7 +12,9 @@ services:
       - ./client:/client
       - /client/node_modules
     ports:
-      - "5000:3000"
+      - "5000:3000"    
+    stdin_open: true
+    tty: true  
 
   server-dev:
     build:
