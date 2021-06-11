@@ -6,7 +6,8 @@ import {
     goToExpandedDialog,
     changeEditContest,
     changeContestViewMode,
-    changeShowImage
+    changeShowImage,
+    changeChatShow  
 } from '../../actions/actionCreator';
 import {connect} from 'react-redux';
 import Header from "../../components/Header/Header";
@@ -96,7 +97,16 @@ class ContestPage extends React.Component {
     };
 
     goChat = () => {
-        const {User} = this.props.contestByIdStore.contestData;
+        const { changeChatShow } = this.props
+        const { interlocutor, isExpanded, isShow } = this.props.chatStore
+        const { User } = this.props.contestByIdStore.contestData
+        if (isExpanded && interlocutor?.id === User.id) {
+          if (!isShow) {
+            changeChatShow()
+          }
+          return null
+        }
+        
         this.props.goToExpandedDialog({
             interlocutor: User,
             conversationData: this.findConversationInfo(User.id)
@@ -171,7 +181,8 @@ const mapDispatchToProps = (dispatch) => {
         goToExpandedDialog: (data) => dispatch(goToExpandedDialog(data)),
         changeEditContest: (data) => dispatch(changeEditContest(data)),
         changeContestViewMode: (data) => dispatch(changeContestViewMode(data)),
-        changeShowImage: data => dispatch(changeShowImage(data))
+        changeShowImage: data => dispatch(changeShowImage(data)),
+        changeChatShow: () => dispatch(changeChatShow()),
     }
 };
 
