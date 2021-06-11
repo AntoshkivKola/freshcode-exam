@@ -1,32 +1,38 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { ref } from 'yup';
+import { ref } from 'yup'
 import Chat from '../Chat/Chat'
+
+const compareDocumentPositionExitCodes = [0, 20, 37, 35]
 
 const ChatContainer = props => {
   const { user, isShow } = useSelector(({ auth, chatStore }) => ({
     user: auth.user,
     isShow: chatStore.isShow
   }))
+  const dispatch = useDispatch()
 
-  /* const dispatch = useDispatch()
-
-  const ref = useRef()
-
-  const handler = useCallback((event)=>{
-    if(ref.current.contains(event.target)){
-      dispatch({type: "CHANGE_CHAT_SHOW", data:false})
+  useLayoutEffect(() => {
+    if (window.screen.availWidth <= 768) {
+      const chatRef = document.querySelector('#chatContainer')
+      const handler = ({ target }) => {
+        if (
+          isShow &&
+          !compareDocumentPositionExitCodes.includes(
+            chatRef.compareDocumentPosition(target)
+          )
+        ) {
+          dispatch({ type: 'CHANGE_CHAT_SHOW', data: false })
+        }
+      }
+      document.addEventListener('click', handler)
+      return () => {
+        document.removeEventListener('click', handler)
+      }
     }
-  },[isShow])
+  }, [isShow])
 
-  useEffect(() => {
-    document.addEventListener('click',handler)
-    return () => {
-      document.removeEventListener('click',handler)
-    }
-  }, [isShow]) */
-
-  return user && <Chat /* ref={ref} *//>
+  return user && <Chat />
 }
 
 export default ChatContainer
