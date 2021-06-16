@@ -11,7 +11,7 @@ const Services = () => {
           <div className={cx(styles.tag, styles.textCenter, styles.mgB10)}>
             Our Services
           </div>
-          <h2 className={cx(styles.title, styles.textCenter, styles.mgB10)}>
+          <h2 className={cx(styles.sectionTitle, styles.textCenter, styles.mgB10)}>
             3 Ways To Use Squadhelp
           </h2>
           <p className={cx(styles.info, styles.textCenter)}>
