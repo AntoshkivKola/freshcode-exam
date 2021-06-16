@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from 'classnames'
 import CONSTANTS from '../../../constants'
 import styles from './StartScreen.module.scss'
 
@@ -7,9 +8,9 @@ const StartScreen = () => {
     <div className={styles.startScreen}>
       <div className={styles.container}>
         <div className={styles.text}>
-          <div className={styles.tag}>World's #1 Naming Platform</div>
-          <div className={styles.title}>How Does Squadhelp Work?</div>
-          <div className={styles.info}>
+          <div className={cx(styles.tag, styles.mgB10)}>World's #1 Naming Platform</div>
+          <div className={cx(styles.title, styles.mgB10)}>How Does Squadhelp Work?</div>
+          <div className={cx(styles.info, styles.mgB20)}>
             Squadhelp helps you come up with a great name for your business by
             combining the power of crowdsourcing with sophisticated technology
             and Agency-level validation services.
