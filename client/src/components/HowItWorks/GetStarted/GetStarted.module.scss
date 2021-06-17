@@ -1,0 +1,45 @@
+@import '../common.scss';
+
+.GetStarted {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background-image: linear-gradient(150deg, #2d1582 0%, #19a0ff 100%);
+  background-repeat: repeat-x;
+  .container {
+    z-index: 2;
+    padding: 32px 15px;
+  }
+  .imgWrapper {
+    position: absolute;
+    width: 208px;
+    height: 150px;
+  }
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+  .imgW_1 {
+    top: 0;
+    left: 0;
+  }
+  .imgW_2 {
+    right: 0;
+    bottom: 0;
+  }
+  .sectionTitle {
+    color: #00dffc;
+    font-weight: 600;
+  }
+  .text {
+    color: white;
+    font-size: 1.38rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .btn {
+    display: block;
+    background-color: #fff;
+    color: #000;
+  }
+}
