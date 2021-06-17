@@ -58,7 +58,7 @@ const Features = () => {
           <div className={cx(styles.imgWrapper, styles.center)}>
             <img
               className={styles.img}
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}how_it_works/features_2.png`}
+              src={`${CONSTANTS.STATIC_IMAGES_PATH}how_it_works/featured.svg`}
               alt=''
             />
           </div>
