@@ -72,3 +72,20 @@
   right: 0;
   bottom: 0;
 }
+.btn {
+  background-color: #377dff;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 16px 20px;
+  @media (max-width: 480px) {
+    margin-bottom: 15px;
+    width: 100%;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
