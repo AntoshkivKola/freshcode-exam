@@ -1,0 +1,98 @@
+@import '../common.scss';
+
+.questions {
+  padding: 32px 0;
+  .container {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 992px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .info {
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
+.commonQuestions {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 64px 32px;
+  @media (min-width: 992px) {
+    padding: 64px;
+    border-radius: 5px;
+  }
+  box-shadow: rgba(140, 152, 164, 0.176) 0px 10px 40px 10px;
+}
+.qList {
+  .item {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    padding-top: 32px;
+    border-bottom: 1px solid #e7eaf3;
+    &:last-child {
+      padding-bottom: 0;
+      border: none;
+    }
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  .itemMarker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    margin-right: 16px;
+    color: #377dff;
+    background-color: rgba(55, 125, 255, 0.1);
+    border-radius: 100%;
+    font-weight: 600;
+    content: '\f105';
+  }
+  .qTitle {
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+  .qBoldTitle {
+    font-size: 1.5rem;
+  }
+  .qLink {
+    color: #377dff;
+  }
+}
+.contacts {
+  padding: 64px 32px;
+  background-color: rgb(55, 125, 255);
+  color: white;
+  @media (min-width: 992px) {
+    padding: 64px;
+  }
+  .info {
+    color: white;
+  }
+  .btn {
+    color: rgb(55, 125, 255);
+    background-color: white;
+    border-radius: 99px;
+    margin-bottom: 40px;
+  }
+  .contactBlock {
+    padding-bottom: 15px;
+    .info {
+      display: block;
+      font-size: 15px;
+    }
+  }
+  .phoneLink {
+    display: inline-block;
+    img {
+      margin-right: 10px;
+    }
+  }
+}
