@@ -15,7 +15,7 @@ const StartScreen = () => {
             combining the power of crowdsourcing with sophisticated technology
             and Agency-level validation services.
           </div>
-          <button  className={styles.btnVideo}>
+          <button  className={cx(styles.btnVideo, styles.btn)}>
             <span class="fas fa-play" ></span>
             <span className={styles.btnVideoText}  > Play Video</span>
           </button>

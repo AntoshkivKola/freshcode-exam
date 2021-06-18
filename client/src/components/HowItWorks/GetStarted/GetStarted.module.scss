@@ -41,5 +41,8 @@
     display: block;
     background-color: #fff;
     color: #000;
+    &:hover{
+      box-shadow: rgba(255, 255, 255, 0.35) 0px 4px 11px 0px;
+    }
   }
 }
