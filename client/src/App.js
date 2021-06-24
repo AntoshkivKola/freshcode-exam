@@ -13,6 +13,8 @@ import NotFound from './components/NotFound/NotFound'
 import Home from './pages/Home/Home'
 import ContestPage from './pages/ContestPage/ContestPage'
 import UserProfile from './pages/UserProfile/UserProfile'
+//import HowItWorks from './pages/HowItWorks'
+import Events from './pages/Events/Events'
 import ContestCreationPage from './pages/ContestCreation/ContestCreationPage'
 import CONSTANTS from './constants'
 import browserHistory from './browserHistory'
@@ -20,6 +22,7 @@ import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatCo
 import { requestAuthRefresh } from './actions/actionCreator'
 import constants from './constants'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import { useEvents, useTimer } from './hooks'
 
 function App () {
   const dispatch = useDispatch()
@@ -30,6 +33,9 @@ function App () {
       dispatch(requestAuthRefresh(refreshToken))
     }
   }, [])
+
+  useTimer();
+  useEvents();
 
   return (
     <Router history={browserHistory}>
@@ -48,6 +54,9 @@ function App () {
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/registration' component={RegistrationPage} />
+        {/* <Route exact path='/how-it-works' component={HowItWorks} /> */}
+        <Route exact path='/events' component={Events} />
+
         <PrivateRoute
           roles={['customer']}
           exact
