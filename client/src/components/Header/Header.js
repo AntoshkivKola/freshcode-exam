@@ -11,6 +11,9 @@ class Header extends React.Component{
         this.props.clearUserStore();
         this.props.history.replace('/login');
     };
+    countReminderEvents = () =>{
+        return this.props.events.filter(event => event.isReminded).length;
+    }
     renderLoginButtons = () => {
         if (this.props.user) {
             return (
@@ -27,10 +30,16 @@ class Header extends React.Component{
                             <li><Link to='/account' style={{textDecoration: 'none'}}><span>My Account</span></Link></li>
                             <li><Link to='http:/www.google.com'
                                       style={{textDecoration: 'none'}}><span>Messages</span></Link></li>
+                            <li className={styles.eventsLink}>
+                                {this.countReminderEvents() ? <div className={styles.countEvents}>{this.countReminderEvents()}</div>: null}  {/* // TODO  */}
+                                <Link to='/events'
+                                      style={{textDecoration: 'none'}}><span>Events</span></Link></li>
+                                      
                             <li><Link to='http:/www.google.com' style={{textDecoration: 'none'}}><span>Affiliate Dashboard</span></Link>
                             </li>
                             <li><span onClick={this.logOut}>Logout</span></li>
                         </ul>
+                        {this.countReminderEvents() ? <div className={styles.countEvents}>{this.countReminderEvents()}</div>: null}  {/* // TODO  */}
                     </div>
                     <img src={`${CONSTANTS.STATIC_IMAGES_PATH}email.png`} className={styles.emailIcon} alt='email'/>
                 </>
@@ -148,7 +157,7 @@ class Header extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  return state.auth;
+  return {...state.auth, ...state.eventsStore};
 };
 const mapDispatchToProps = (dispatch) => {
   return {
