@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  min-width: 290px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  width: 100%;
+}
+.title {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+.submitBtn,
+.input {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  min-width: 290px;
+  width: 100%;
+}
+
+.submitBtn {
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgb(2, 161, 224);
+  color: rgb(223, 246, 245);
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: rgba(255, 255, 255, 0.35) 0px 4px 11px 0px;
+  }
+}
+.subTitle {
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: rgb(42, 39, 39);
+}
+

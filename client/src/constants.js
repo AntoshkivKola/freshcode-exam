@@ -89,4 +89,17 @@ export default {
       ],
     },
   ],
+  REMINDERS : [
+    { value: 'Not' },
+    { minutes: 0, value: 'At the time of the event' },
+    { minutes: 5, value: 'In 5 minutes' },
+    { minutes: 10, value: 'In 10 minutes' },
+    { minutes: 15, value: 'In 15 minutes' },
+    { minutes: 30, value: 'In 30 minutes' },
+    { minutes: 60, value: 'In 1 hour' },
+    { minutes: 120, value: 'In 2 hour' },
+    { minutes: 1440, value: 'In 1 day' },
+    { minutes: 2880, value: 'In 2 day' },
+    { minutes: 10080, value: 'In 1 week' }
+  ]
 };
