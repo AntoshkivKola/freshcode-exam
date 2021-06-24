@@ -1,0 +1,44 @@
+
+.eventTable {
+  display: block;
+  background-color: white;
+  padding: 20px 5px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  @media (min-width: 576px) {
+    padding: 20px 10px;
+  }
+}
+.eventTableBody{
+  display: block;
+}
+.eventTableHead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 290px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  @media (min-width: 576px) {
+    flex-direction: row;
+  }
+  th {
+    //flex: 1;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 30%;
+    @media (max-width: 575px) {
+      margin-bottom: 5px;
+    }
+  }
+  
+  th:last-child {
+    width: 10%;
+  }
+}
+.eventTableTitle {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
