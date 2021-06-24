@@ -1,0 +1,32 @@
+.input {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  min-width: 290px;
+  width: 100%;
+}
+.inputContainer {
+  position: relative;
+}
+.errorMessage {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 97%;
+  padding: 5px 15px;
+  border: 2px solid red;
+  background-color: rgb(243, 143, 136);
+  border-radius: 5px;
+}
+.errorMessage::before {
+  content: '';
+  position: inherit;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 7.5px 10px 7.5px;
+  border-color: transparent transparent red transparent;
+}
