@@ -1,0 +1,55 @@
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #e7eaf3;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: 5px;
+  height: 100%;
+
+  &:not(.getActive):hover {
+    border-color: rgba(44, 185, 183, 0.2);
+    box-shadow: rgba(44, 185, 183, 0.125) 0px 0px 5px 0px;
+  }
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 7px 15px;
+  background-color: #77838f;
+  color: white;
+  border-radius: 10rem;
+  text-align: center;
+}
+.buttonContainer {
+  flex: 1 0 0%;
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+.getActive {
+  border-color: rgba(44, 185, 183, 0.5);
+
+  .button {
+    border-radius: 3px;
+  }
+  .badge {
+    background-color: #2cb9b7;
+  }
+}
+
+.description {
+  line-height: 1.5;
+  color: #555c6b;
+  margin-bottom: 4px;
+  white-space: pre;
+}
