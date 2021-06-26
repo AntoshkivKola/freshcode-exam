@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import cx from 'classnames'
 import styles from './ButtonGroup.module.scss'
+import mainStyles from '../ContestForm/ContestForm.module.sass'
 
 const ButtonGroupContent = [
   {
@@ -13,7 +14,7 @@ const ButtonGroupContent = [
     id: 1,
     badge: 'Yes',
     description: `But minor variations are allowed\n(Recommended)`,
-    isActive: false
+    isActive: true
   },
   {
     id: 2,
@@ -41,25 +42,32 @@ const ButtonGroup = props => {
     setBtnGC(copyBtnGC)
   }
   return (
-    <div id='buttonGroup' className={styles.buttonGroup}>
-      {btnGC.map(card => (
-        <div
-          className={cx(styles.buttonContainer,{
-            [styles.getActive]: card.isActive
-          })}
-        >
+    <div className={mainStyles.inputContainer}>
+      <h2 className={mainStyles.inputHeader}> Do you want a matching domain (.com URL) with your name? </h2>
+      <p className={styles.description}>
+        If you want a matching domain, our platform will only accept those name
+        suggestions where the domain is available. (Recommended)
+      </p>
+      <div id='buttonGroup' className={styles.buttonGroup}>
+        {btnGC.map(card => (
           <div
-            onClick={toggleActiveBtn}
-            className={cx(styles.button, {
+            className={cx(styles.buttonContainer, {
               [styles.getActive]: card.isActive
             })}
-            data-id={card.id}
           >
-            <span className={styles.badge}>{card.badge}</span>
-            <span className={styles.description}>{card.description}</span>
+            <div
+              onClick={toggleActiveBtn}
+              className={cx(styles.button, {
+                [styles.getActive]: card.isActive
+              })}
+              data-id={card.id}
+            >
+              <span className={styles.badge}>{card.badge}</span>
+              <span className={styles.description}>{card.description}</span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
