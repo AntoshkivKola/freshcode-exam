@@ -13,7 +13,7 @@ const ButtonGroupContent = [
   {
     id: 1,
     badge: 'Yes',
-    description: `But minor variations are allowed\n(Recommended)`,
+    description: `But minor variations are allowed (Recommended)`,
     isActive: true
   },
   {
