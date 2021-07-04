@@ -5,7 +5,6 @@ class Message {
     this.conversation = conversation;
     this.createdAt = new Date().toString();
     this.updatedAt = new Date().toString();
-    this.participants = null;
   }
 
   static _client;
