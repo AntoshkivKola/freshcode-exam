@@ -108,11 +108,7 @@ router.post('/blackList',  chatControllerSQL.blackList);
 
 router.post('/favorite',  chatControllerSQL.favoriteChat);
 
-router.post(
-  '/createCatalog',
-  
-  chatController.createCatalog
-);
+router.post('/createCatalog',  chatControllerSQL.createCatalog);
 
 router.post(
   '/updateNameCatalog',

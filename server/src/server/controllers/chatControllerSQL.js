@@ -15,7 +15,7 @@ module.exports.addMessage = async (req, res, next) => {
     const message = new Message({
       sender: req.tokenData.userId,
       body: req.body.messageBody,
-      conversation: newConversation.id,
+      conversation: newConversation._id,
     });
 
     await message.save();
@@ -24,7 +24,7 @@ module.exports.addMessage = async (req, res, next) => {
       participant => participant !== req.tokenData.userId
     )[0];
     const preview = {
-      _id: newConversation.id,
+      _id: newConversation._id,
       sender: req.tokenData.userId,
       text: req.body.messageBody,
       createAt: message.createdAt,
@@ -39,7 +39,7 @@ module.exports.addMessage = async (req, res, next) => {
     controller.getChatController().emitNewMessage(interlocutorId, {
       message: message,
       preview: {
-        _id: newConversation.id,
+        _id: newConversation._id,
         sender: req.tokenData.userId,
         text: req.body.messageBody,
         createAt: message.createdAt,
@@ -168,5 +168,20 @@ module.exports.favoriteChat = async (req, res, next) => {
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {
     res.send(err);
+  }
+};
+
+module.exports.createCatalog = async (req, res, next) => {
+  console.log('req.body.chatId ',req.body.chatId)
+  const catalog = new Catalog({
+    userId: req.tokenData.userId,
+    catalogName: req.body.catalogName,
+    chats: [req.body.chatId],
+  });
+  try {
+    await catalog.save();
+    res.send(catalog);
+  } catch (err) {
+    next(err);
   }
 };
