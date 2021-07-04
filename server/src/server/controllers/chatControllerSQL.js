@@ -217,3 +217,18 @@ module.exports.deleteCatalog = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.addNewChatToCatalog = async (req, res, next) => {
+  try {
+    const catalog = await Catalog.addNewChatToCatalog(
+      {
+        _id: req.body.catalogId,
+        userId: req.tokenData.userId,
+        chat: req.body.chatId 
+      }  
+    );
+    res.send(catalog);
+  } catch (err) {
+    next(err);
+  }
+};

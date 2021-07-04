@@ -112,11 +112,7 @@ router.post('/createCatalog',  chatControllerSQL.createCatalog);
 
 router.post('/updateNameCatalog',  chatControllerSQL.updateNameCatalog);
 
-router.post(
-  '/addNewChatToCatalog',
-  
-  chatController.addNewChatToCatalog
-);
+router.post('/addNewChatToCatalog', chatControllerSQL.addNewChatToCatalog);
 
 router.post(
   '/removeChatFromCatalog',
