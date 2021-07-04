@@ -111,10 +111,7 @@ router.post('/favorite',  chatControllerSQL.favoriteChat);
 router.post('/createCatalog',  chatControllerSQL.createCatalog);
 
 router.post(
-  '/updateNameCatalog',
-  
-  chatController.updateNameCatalog
-);
+  '/updateNameCatalog',  chatControllerSQL.updateNameCatalog);
 
 router.post(
   '/addNewChatToCatalog',

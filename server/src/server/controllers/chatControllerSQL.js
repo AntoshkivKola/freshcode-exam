@@ -141,7 +141,7 @@ module.exports.blackList = async (req, res, next) => {
       participants: req.body.participants,
       blackListFlag: req.body.blackListFlag,
     });
-    
+
     res.send(chat);
     const interlocutorId = req.body.participants.filter(
       participant => participant !== req.tokenData.userId
@@ -172,7 +172,6 @@ module.exports.favoriteChat = async (req, res, next) => {
 };
 
 module.exports.createCatalog = async (req, res, next) => {
-  console.log('req.body.chatId ',req.body.chatId)
   const catalog = new Catalog({
     userId: req.tokenData.userId,
     catalogName: req.body.catalogName,
@@ -194,3 +193,16 @@ module.exports.getCatalogs = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.updateNameCatalog = async (req, res, next) => {
+  try {
+    const catalog = await Catalog.updateNameCatalog({
+      _id: req.body.catalogId,
+      catalogName: req.body.catalogName,
+    });
+    res.send(catalog);
+  } catch (err) {
+    next(err);
+  }
+};
+

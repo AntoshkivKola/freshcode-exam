@@ -20,7 +20,17 @@ class Catalog {
     return rows;
   }
 
-
+  static async updateNameCatalog ({
+    _id,
+    catalogName
+  }) {
+    const { rows } = await this._client.query(`
+    UPDATE "${this._schema}"."${this._tableName}"
+    SET "catalogName" = '${catalogName}'
+    WHERE "_id" = ${_id}
+    RETURNING *; `);
+    return rows[0];
+  }
 
   
   async save () {
