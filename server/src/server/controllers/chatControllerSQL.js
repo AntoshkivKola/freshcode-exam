@@ -185,3 +185,12 @@ module.exports.createCatalog = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.getCatalogs = async (req, res, next) => {
+  try {
+    const catalogs = await Catalog.getCatalogs(req.tokenData.userId);
+    res.send(catalogs);
+  } catch (err) {
+    next(err);
+  }
+};

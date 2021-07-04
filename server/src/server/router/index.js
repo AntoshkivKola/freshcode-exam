@@ -134,6 +134,6 @@ router.post(
   chatController.deleteCatalog
 );
 
-router.post('/getCatalogs',  chatController.getCatalogs);
+router.post('/getCatalogs',  chatControllerSQL.getCatalogs);
 
 module.exports = router;

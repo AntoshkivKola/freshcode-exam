@@ -8,25 +8,30 @@ class Catalog {
   static _client;
   static _schema = 'chat';
   static _tableName = 'catalogs';
-  static _mtmTableName = 'catalogsToConversations';
 
+  static async getCatalogs(userId){
+    const { rows } = await this._client.query(`
+    SELECT "_id",
+      "chats",
+      "catalogName"
+    FROM "${this._schema}"."${this._tableName}"
+      WHERE "userId" = ${userId};`);
+
+    return rows;
+  }
+
+
+
+  
   async save () {
     const { rows: [catalog] } = await Catalog._client.query(`
     INSERT INTO "${Catalog._schema}"."${Catalog._tableName}" (
       "userId",
+      "chats",
       "catalogName"
-    ) VALUES (${this.userId}, '${this.catalogName}')
+    ) VALUES (${this.userId}, ARRAY[${this.chats[0]}], '${this.catalogName}')
     RETURNING *;`);
-    
-    
-    const catalogsValuesString = this.chats.map(chatId => `(${catalog._id}, ${chatId})`).join(',');
-    const { rows } = await Catalog._client.query(`
-    INSERT INTO "${Catalog._schema}"."${Catalog._mtmTableName}" (
-      "catalogId",
-      "conversationId"
-    ) VALUES ${catalogsValuesString}
-    RETURNING *;`);
-    catalog.chats = this.chats;  
+ 
     return catalog;
   }
 }
