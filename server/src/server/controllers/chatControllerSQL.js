@@ -11,7 +11,6 @@ module.exports.addMessage = async (req, res, next) => {
   );
   try {
     const newConversation = await Conversation.findOneOrCreate(participants);
-    console.log('newCon: ', newConversation);
 
     const message = new Message({
       sender: req.tokenData.userId,
@@ -142,8 +141,7 @@ module.exports.blackList = async (req, res, next) => {
       participants: req.body.participants,
       blackListFlag: req.body.blackListFlag,
     });
-    console.log(' chat >>>>>>>>>>', chat);
-
+    
     res.send(chat);
     const interlocutorId = req.body.participants.filter(
       participant => participant !== req.tokenData.userId
@@ -154,3 +152,21 @@ module.exports.blackList = async (req, res, next) => {
   }
 };
 
+module.exports.favoriteChat = async (req, res, next) => {
+  const userIndex = req.body.participants.indexOf(req.tokenData.userId) + 1;
+  try {
+    const chat = await Conversation.changeFavoriteListFlag({
+      userIndex,
+      participants: req.body.participants,
+      favoriteFlag: req.body.favoriteFlag,
+    });
+
+    res.send(chat);
+    const interlocutorId = req.body.participants.filter(
+      participant => participant !== req.tokenData.userId
+    )[0];
+    controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
+  } catch (err) {
+    res.send(err);
+  }
+};
