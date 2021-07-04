@@ -13,14 +13,14 @@ class Message {
 
   static async getMessages (participants) {
     const { rows } = await this._client.query(`
-    SELECT m.id,
+    SELECT m."_id",
       m."body",
       m."sender",
       m."conversation",
       m."createdAt",
       m."updatedAt"
     FROM "${this._schema}"."${this._tableName}" as m
-    JOIN chat.conversations as c ON m.conversation = c.id
+    JOIN chat.conversations as c ON m.conversation = c."_id"
     WHERE c.participants = ARRAY[${participants[0]}, ${participants[1]}];`);
     return rows;
   }

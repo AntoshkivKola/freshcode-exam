@@ -21,7 +21,7 @@ class Conversation {
 
   static async getPreview () {
     const { rows } = await this._client.query(`
-    SELECT DISTINCT ON(c."id") c."id",
+    SELECT DISTINCT ON(c."_id") c."_id",
       m."sender",
       m."body" AS "text",
       m."createdAt",
@@ -29,7 +29,7 @@ class Conversation {
       c."blackList",
       c."favoriteList"
     FROM "${this._schema}"."${this._tableName}" AS c
-      JOIN chat.messages AS m ON c.id = m.conversation;`);
+      JOIN chat.messages AS m ON c."_id" = m.conversation;`);
 
     return rows;
   }
