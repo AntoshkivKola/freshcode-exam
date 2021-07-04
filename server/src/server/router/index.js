@@ -4,6 +4,7 @@ const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
+const chatControllerSQL = require('../controllers/chatControllerSQL');
 const upload = require('../utils/fileUpload');
 const authRouter = require('./auth');
 const { checkAccessToken } = require('../middlewares/tokenMw');
@@ -97,9 +98,9 @@ router.post(
   userController.cashout
 );
 
-router.post('/newMessage',  chatController.addMessage);
+router.post('/newMessage',   chatControllerSQL.addMessage);//chatController.addMessage,
 
-router.post('/getChat',  chatController.getChat);
+router.post('/getChat',  chatControllerSQL.getChat);
 
 router.post('/getPreview',  chatController.getPreview);
 
