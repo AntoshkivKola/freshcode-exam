@@ -206,3 +206,14 @@ module.exports.updateNameCatalog = async (req, res, next) => {
   }
 };
 
+module.exports.deleteCatalog = async (req, res, next) => {
+  try {
+    await Catalog.remove({
+      _id: req.body.catalogId,
+      userId: req.tokenData.userId,
+    });
+    res.end();
+  } catch (err) {
+    next(err);
+  }
+};

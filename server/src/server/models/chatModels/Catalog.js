@@ -9,7 +9,7 @@ class Catalog {
   static _schema = 'chat';
   static _tableName = 'catalogs';
 
-  static async getCatalogs(userId){
+  static async getCatalogs (userId) {
     const { rows } = await this._client.query(`
     SELECT "_id",
       "chats",
@@ -20,10 +20,7 @@ class Catalog {
     return rows;
   }
 
-  static async updateNameCatalog ({
-    _id,
-    catalogName
-  }) {
+  static async updateNameCatalog ({ _id, catalogName }) {
     const { rows } = await this._client.query(`
     UPDATE "${this._schema}"."${this._tableName}"
     SET "catalogName" = '${catalogName}'
@@ -31,17 +28,27 @@ class Catalog {
     RETURNING *; `);
     return rows[0];
   }
-
   
+  static async remove ({ _id, userId }) {
+    await this._client.query(`
+    DELETE FROM "${this._schema}"."${this._tableName}"
+    WHERE "_id" = ${_id}
+    AND "userId" = ${userId}
+     `);
+    return;
+  }
+
   async save () {
-    const { rows: [catalog] } = await Catalog._client.query(`
+    const {
+      rows: [catalog],
+    } = await Catalog._client.query(`
     INSERT INTO "${Catalog._schema}"."${Catalog._tableName}" (
       "userId",
       "chats",
       "catalogName"
     ) VALUES (${this.userId}, ARRAY[${this.chats[0]}], '${this.catalogName}')
     RETURNING *;`);
- 
+
     return catalog;
   }
 }
