@@ -133,3 +133,24 @@ module.exports.getPreview = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.blackList = async (req, res, next) => {
+  const userIndex = req.body.participants.indexOf(req.tokenData.userId) + 1;
+  try {
+    const chat = await Conversation.changeBlackListFlag({
+      userIndex,
+      participants: req.body.participants,
+      blackListFlag: req.body.blackListFlag,
+    });
+    console.log(' chat >>>>>>>>>>', chat);
+
+    res.send(chat);
+    const interlocutorId = req.body.participants.filter(
+      participant => participant !== req.tokenData.userId
+    )[0];
+    controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
+  } catch (err) {
+    res.send(err);
+  }
+};
+

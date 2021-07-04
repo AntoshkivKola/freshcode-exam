@@ -104,7 +104,7 @@ router.post('/getChat',  chatControllerSQL.getChat);
 
 router.post('/getPreview',  chatControllerSQL.getPreview);
 
-router.post('/blackList',  chatController.blackList);
+router.post('/blackList',  chatControllerSQL.blackList);
 
 router.post('/favorite',  chatController.favoriteChat);
 

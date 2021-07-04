@@ -33,6 +33,18 @@ class Conversation {
 
     return rows;
   }
+
+  static async changeBlackListFlag({userIndex, participants, blackListFlag}){
+    console.log(userIndex, participants, blackListFlag);
+    const {rows} = await this._client.query(`
+    UPDATE "${this._schema}"."${this._tableName}"
+    SET "blackList"[${userIndex}] = ${blackListFlag}
+    WHERE participants = ARRAY[${participants[0]},${participants[1]}]
+    RETURNING *; `);
+    return rows[0];
+  }
+
+
 }
 
 module.exports = Conversation;
