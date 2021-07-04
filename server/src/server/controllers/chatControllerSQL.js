@@ -2,26 +2,28 @@ const _ = require('lodash');
 const db = require('../models/index');
 const userQueries = require('./queries/userQueries');
 const controller = require('../../socketInit');
-const {Message,Conversation,Catalog} = require('../models/chatModels');
+const { Message, Conversation, Catalog } = require('../models/chatModels');
 
 module.exports.addMessage = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
   participants.sort(
-    (participant1, participant2) => participant1 - participant2);
+    (participant1, participant2) => participant1 - participant2
+  );
   try {
-    const newConversation = await Conversation.findOneOrCreate(participants)
-    console.log("newCon: ", newConversation)
-    
+    const newConversation = await Conversation.findOneOrCreate(participants);
+    console.log('newCon: ', newConversation);
+
     const message = new Message({
       sender: req.tokenData.userId,
       body: req.body.messageBody,
-      conversation: newConversation.id
+      conversation: newConversation.id,
     });
-   
+
     await message.save();
     message.participants = participants;
     const interlocutorId = participants.filter(
-      (participant) => participant !== req.tokenData.userId)[0];
+      participant => participant !== req.tokenData.userId
+    )[0];
     const preview = {
       _id: newConversation.id,
       sender: req.tokenData.userId,
@@ -29,12 +31,12 @@ module.exports.addMessage = async (req, res, next) => {
       createAt: message.createdAt,
       participants,
       blackList: newConversation.blackList,
-      favoriteList: newConversation.favoriteList
+      favoriteList: newConversation.favoriteList,
     };
-    const sender = await db.User.findByPk(req.tokenData.userId,{
-      attributes: ['firstName','lastName','id'],
+    const sender = await db.User.findByPk(req.tokenData.userId, {
+      attributes: ['firstName', 'lastName', 'id'],
       raw: true,
-    })
+    });
     controller.getChatController().emitNewMessage(interlocutorId, {
       message: message,
       preview: {
@@ -51,18 +53,18 @@ module.exports.addMessage = async (req, res, next) => {
           lastName: req.tokenData.lastName,
           displayName: req.tokenData.displayName,
           avatar: req.tokenData.avatar,
-          email: req.tokenData.email
-        }
-      }
+          email: req.tokenData.email,
+        },
+      },
     });
     controller.getNotificationController().emitNewMessage({
-      interlocutorId, 
-      sender, 
-      dialogId: message.conversation
-    })
+      interlocutorId,
+      sender,
+      dialogId: message.conversation,
+    });
     res.send({
       message,
-      preview: Object.assign(preview, { interlocutor: req.body.interlocutor })
+      preview: Object.assign(preview, { interlocutor: req.body.interlocutor }),
     });
   } catch (err) {
     next(err);
@@ -72,12 +74,14 @@ module.exports.addMessage = async (req, res, next) => {
 module.exports.getChat = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.interlocutorId];
   participants.sort(
-    (participant1, participant2) => participant1 - participant2);
+    (participant1, participant2) => participant1 - participant2
+  );
   try {
     const messages = await Message.getMessages(participants);
 
-    const interlocutor = await userQueries.findUser(
-      { id: req.body.interlocutorId });
+    const interlocutor = await userQueries.findUser({
+      id: req.body.interlocutorId,
+    });
     res.send({
       messages,
       interlocutor: {
@@ -85,9 +89,46 @@ module.exports.getChat = async (req, res, next) => {
         lastName: interlocutor.lastName,
         displayName: interlocutor.displayName,
         id: interlocutor.id,
-        avatar: interlocutor.avatar
-      }
+        avatar: interlocutor.avatar,
+      },
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getPreview = async (req, res, next) => {
+  try {
+    const conversations = await Conversation.getPreview();
+
+    const interlocutors = [];
+    conversations.forEach(conversation => {
+      interlocutors.push(
+        conversation.participants.find(
+          participant => participant !== req.tokenData.userId
+        )
+      );
+    });
+    const senders = await db.User.findAll({
+      where: {
+        id: interlocutors,
+      },
+      attributes: ['id', 'firstName', 'lastName', 'displayName', 'avatar'],
+    });
+    conversations.forEach(conversation => {
+      senders.forEach(sender => {
+        if (conversation.participants.includes(sender.dataValues.id)) {
+          conversation.interlocutor = {
+            id: sender.dataValues.id,
+            firstName: sender.dataValues.firstName,
+            lastName: sender.dataValues.lastName,
+            displayName: sender.dataValues.displayName,
+            avatar: sender.dataValues.avatar,
+          };
+        }
+      });
+    });
+    res.send(conversations);
   } catch (err) {
     next(err);
   }

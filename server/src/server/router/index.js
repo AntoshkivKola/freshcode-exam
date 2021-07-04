@@ -102,7 +102,7 @@ router.post('/newMessage',   chatControllerSQL.addMessage);//chatController.addM
 
 router.post('/getChat',  chatControllerSQL.getChat);
 
-router.post('/getPreview',  chatController.getPreview);
+router.post('/getPreview',  chatControllerSQL.getPreview);
 
 router.post('/blackList',  chatController.blackList);
 
