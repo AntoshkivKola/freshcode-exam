@@ -28,7 +28,7 @@ class Catalog {
     RETURNING *; `);
     return rows[0];
   }
-  
+
   static async remove ({ _id, userId }) {
     await this._client.query(`
     DELETE FROM "${this._schema}"."${this._tableName}"
@@ -38,11 +38,20 @@ class Catalog {
     return;
   }
 
-
   static async addNewChatToCatalog ({ _id, userId, chat }) {
     const { rows } = await this._client.query(`
     UPDATE "${this._schema}"."${this._tableName}"
     SET "chats" = array_append("chats", ${chat})
+    WHERE "_id" = ${_id}
+    AND "userId" = ${userId}
+    RETURNING *; `);
+    return rows[0];
+  }
+
+  static async removeChatFromCatalog ({ _id, userId, chat }) {
+    const { rows } = await this._client.query(`
+    UPDATE "${this._schema}"."${this._tableName}"
+    SET "chats" = array_remove("chats", ${chat})
     WHERE "_id" = ${_id}
     AND "userId" = ${userId}
     RETURNING *; `);

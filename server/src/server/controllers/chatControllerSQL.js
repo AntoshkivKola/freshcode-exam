@@ -220,13 +220,24 @@ module.exports.deleteCatalog = async (req, res, next) => {
 
 module.exports.addNewChatToCatalog = async (req, res, next) => {
   try {
-    const catalog = await Catalog.addNewChatToCatalog(
-      {
-        _id: req.body.catalogId,
-        userId: req.tokenData.userId,
-        chat: req.body.chatId 
-      }  
-    );
+    const catalog = await Catalog.addNewChatToCatalog({
+      _id: req.body.catalogId,
+      userId: req.tokenData.userId,
+      chat: req.body.chatId,
+    });
+    res.send(catalog);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.removeChatFromCatalog = async (req, res, next) => {
+  try {
+    const catalog = await Catalog.removeChatFromCatalog({
+      _id: req.body.catalogId,
+      userId: req.tokenData.userId,
+      chat: req.body.chatId,
+    });
     res.send(catalog);
   } catch (err) {
     next(err);
