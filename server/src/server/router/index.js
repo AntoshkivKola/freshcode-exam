@@ -3,7 +3,6 @@ const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
 const validators = require('../middlewares/validators');
-const chatController = require('../controllers/chatController');
 const chatControllerSQL = require('../controllers/chatControllerSQL');
 const upload = require('../utils/fileUpload');
 const authRouter = require('./auth');
