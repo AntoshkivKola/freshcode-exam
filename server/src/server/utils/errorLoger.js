@@ -34,6 +34,10 @@ module.exports.createNewLogFile = newFileName => {
 };
 
 module.exports.errorLoger = async function (err) {
+  const prerearedStackTrace = {
+    errorType: err.stack.split(':')[0],
+    path: err.stack.split('\n').filter((e, index) => index !== 0),
+  };
   const errors = [];
 
   fs.access(file, fs.F_OK, findFileError => {
@@ -41,7 +45,7 @@ module.exports.errorLoger = async function (err) {
       message: err.message,
       time: new Date().toLocaleTimeString(),
       code: err.status ? err.status : '-',
-      stackTrace: err.stack,
+      stackTrace: prerearedStackTrace,
     });
     if (findFileError) {
       fs.writeFile(file, JSON.stringify(errors), err => {
