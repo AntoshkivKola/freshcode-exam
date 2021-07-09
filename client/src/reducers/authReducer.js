@@ -5,6 +5,7 @@ const initialState = {
     isFetching: false,
     error: null,
     user: null,
+    checkMail: false,
 };
 
 export default function (state = initialState, action) {
@@ -64,6 +65,29 @@ export default function (state = initialState, action) {
             return{
                 ...state,
                 error: null
+            }
+        }
+        case ACTION.AUTH_ACTION_CHANGE_PASSWORD_REQUEST:{
+            return{
+                ...state,
+                isFetching: true,
+                error: null,
+            }
+        }
+        case ACTION.AUTH_ACTION_CHANGE_PASSWORD_SUCCESS:{
+            console.log('AUTH_ACTION_CHANGE_PASSWORD_SUCCESS yeeeeeees')
+            return{
+                ...state,
+                isFetching: false,
+                error: null,
+                checkMail: true,
+            }
+        }
+        case ACTION.AUTH_ACTION_CHAHGE_PASSWORD_ERROR:{
+            return{
+                ...state,
+                isFetching: false,
+                error: action.error,
             }
         }
         default:

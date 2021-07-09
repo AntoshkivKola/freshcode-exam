@@ -440,3 +440,17 @@ export const changeModalShow=(data)=>{
         data: data
     }
 };
+
+export const changePassword = (data) => {
+    return {
+        type: ACTION.AUTH_ACTION_CHANGE_PASSWORD,
+        data: data
+    }
+};
+
+export const updateUserPassword = (data) => {
+    return {
+        type: ACTION.AUTH_ACTION_UPDATE_PASSWORD,
+        data: data
+    }
+};
