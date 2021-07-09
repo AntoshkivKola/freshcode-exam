@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { authActionLogin, clearAuth } from '../../actions/actionCreator'
+import { changePassword, clearAuth } from '../../actions/actionCreator'
 import { Redirect } from 'react-router-dom'
 import styles from './ChangePasswordForm.module.scss'
 import { Field, reduxForm } from 'redux-form'
@@ -15,11 +15,11 @@ class ChangePasswordForm extends React.Component {
   }
 
   clicked = values => {
-    this.props.loginRequest(values)
+    this.props.changePasswordRequest(values)
   }
-
+ 
   render () {
-    const { error, isFetching } = this.props.auth
+    const { error, isFetching,checkMail } = this.props.auth
     const { handleSubmit, submitting, authClear } = this.props
 
     const formInputClasses = {
@@ -65,6 +65,7 @@ class ChangePasswordForm extends React.Component {
             </span>
           </button>
         </form>
+        {checkMail && <span>chealk your email to confirm new password</span>}
       </div>
     )
   }
@@ -76,7 +77,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loginRequest: data => dispatch(authActionLogin(data)),
+  changePasswordRequest: data => dispatch(changePassword(data)),
   authClear: () => dispatch(clearAuth())
 })
 
