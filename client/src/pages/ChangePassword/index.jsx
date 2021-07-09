@@ -1,13 +1,13 @@
 import React from 'react';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import ChangePasswordForm from '../../components/ChangePasswordForm';
 import Logo from '../../components/Logo';
-import styles from './LoginPage.module.sass';
+import styles from '../LoginPage/LoginPage.module.sass';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
 import CONSTANTS from '../../constants';
 
-const LoginPage = (props) => {
+const ChangePassword = (props) => {
   const changeRoute = () => {
     props.history.replace('/');
   };
@@ -22,12 +22,8 @@ const LoginPage = (props) => {
           </div>
         </div>
         <div className={ styles.loginFormContainer }>
-          <LoginForm changeRoute={ changeRoute }/>
+          <ChangePasswordForm changeRoute={ changeRoute }/>
         </div>
-        <div className={ styles.linkLoginContainer }>
-            <Link to='/changePassword'
-                  style={ {textDecoration: 'none'} }><span>forgot password</span></Link>
-          </div>
       </div>
     </div>
   );
@@ -40,4 +36,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(null, mapDispatchToProps)(ChangePassword);
