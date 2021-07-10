@@ -24,10 +24,7 @@ const LoginPage = (props) => {
         <div className={ styles.loginFormContainer }>
           <LoginForm changeRoute={ changeRoute }/>
         </div>
-        <div className={ styles.linkLoginContainer }>
-            <Link to='/changePassword'
-                  style={ {textDecoration: 'none'} }><span>forgot password</span></Link>
-          </div>
+        
       </div>
     </div>
   );

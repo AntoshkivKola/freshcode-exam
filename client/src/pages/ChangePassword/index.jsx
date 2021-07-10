@@ -1,7 +1,7 @@
 import React from 'react'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
 import Logo from '../../components/Logo'
-import styles from '../LoginPage/LoginPage.module.sass'
+import styles from './ChangePassword.module.scss'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
@@ -34,19 +34,21 @@ const ChangePassword = props => {
             </Link>
           </div>
         </div>
-        <div className={styles.loginFormContainer}>
-          {haveMessage && (
-            <span>
-              
-              Click
-              <Link to='/login' style={{ textDecoration: 'none' }}>
+        
+        
+        {haveMessage && (
+            <div className={styles.msgContainer}>
+              Your password has been changed. Click
+              <Link to='/login' className={styles.loginLink}>
                 <span> here </span>
               </Link>
-              to login
-            </span>
-          )}
+              to login.
+            </div>
+          )}  
+        <div className={styles.loginFormContainer}>
           <ChangePasswordForm changeRoute={changeRoute} />
         </div>
+        
       </div>
     </div>
   )

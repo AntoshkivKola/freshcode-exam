@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authActionLogin, clearAuth } from '../../actions/actionCreator';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import styles from './LoginForm.module.sass';
 import { Field, reduxForm } from 'redux-form';
 import FormInput from '../FormInput/FormInput';
@@ -57,6 +57,11 @@ class LoginForm extends React.Component{
               ? 'Submitting...'
               : 'LOGIN' }</span>
           </button>
+          <div className={styles.linkWrapper}>
+            <Link to='/changePassword'style={ {textDecoration: 'none'}  } className={ styles.forgotPasswordLink}>
+              <span>Forgot Password</span>
+            </Link>
+          </div>
         </form>
       </div>
     );
