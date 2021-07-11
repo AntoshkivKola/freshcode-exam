@@ -44,13 +44,20 @@ class ContestPage extends React.Component {
 
 
     setOffersList = () => {
+        const {offers,contestData} = this.props.contestByIdStore;
+        const {role} = this.props.auth.user;
+        console.log(role, CONSTANTS.CUSTOMER)
         const array = [];
-        for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
-            array.push(<OfferBox data={this.props.contestByIdStore.offers[i]}
-                                 key={this.props.contestByIdStore.offers[i].id} needButtons={this.needButtons}
-                                 setOfferStatus={this.setOfferStatus}
-                                 contestType={this.props.contestByIdStore.contestData.contestType} date={new Date()}/>)
+        for (let i = 0; i < offers.length; i++) {
+            if(role === CONSTANTS.CUSTOMER && (offers[i].status === 'moderated' || offers[i].status === 'banned' )){
+                continue;
+            }
+            array.push(<OfferBox data={offers[i]}
+                                key={offers[i].id} needButtons={this.needButtons}
+                                setOfferStatus={this.setOfferStatus}
+                                contestType={contestData.contestType} date={new Date()}/>)
         }
+        console.log(array.length)
         return array.length !== 0 ? array : <div className={styles.notFound}>There is no suggestion at this moment</div>
     };
 
