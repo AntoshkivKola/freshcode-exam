@@ -93,7 +93,7 @@ function App () {
         </PrivateRoute>
 
         <PrivateRoute
-          roles={['customer', 'creator']}
+          roles={['customer', 'creator', 'moderator']}
           exact
           path='/dashboard'
           component={Dashboard}
@@ -105,7 +105,7 @@ function App () {
           component={ContestPage}
         />
         <PrivateRoute
-          roles={['customer', 'creator']}
+          roles={['customer', 'creator', 'moderator']}
           exact
           path='/account'
           component={UserProfile}
