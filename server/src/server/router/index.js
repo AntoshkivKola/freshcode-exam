@@ -139,4 +139,7 @@ router.post(
 
 router.post('/getCatalogs',  chatController.getCatalogs);
 
+router.post('/getOffers',  contestController.getModeratorOffers);
+router.post('/banOrPandingOffer',  contestController.banOrPandingOffer);
+
 module.exports = router;
