@@ -440,3 +440,17 @@ export const changeModalShow=(data)=>{
         data: data
     }
 };
+
+export const getModeratorOffers=(data)=>{
+    return{
+        type: ACTION.GET_MODERATOR_OFFERS,
+        data: data
+    }
+};
+
+export const setModeratorOfferStatus=(data)=>{
+    return{
+        type: ACTION.SET_MODERATOR_OFFER_STATUS,
+        data: data
+    }
+};
