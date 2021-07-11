@@ -55,3 +55,22 @@ export function* setOfferStatusSaga(action) {
 }
 
 
+export function* getOffers(action) {
+    yield  put({type: ACTION.GET_MODERATOR_OFFERS_REQUEST});
+    try {
+        const { data }   = yield  restController.getOffers(action.data);
+        yield  put({type: ACTION.GET_MODERATOR_OFFERS_SUCCESS, data: data});
+    } catch (e) {
+        yield  put({type: ACTION.GET_MODERATOR_OFFERS_ERROR, error: e.response});
+    }
+}
+
+export function* banOrPandingOffer(action) {
+    try {
+        yield  restController.banOrPandingOffer(action.data);
+        yield  put({type: ACTION.DELETE_MODERATOR_OFFER, data: action.data.offerId});
+    } catch (e) {
+        console.log(e)
+        yield  put({type: ACTION.GET_MODERATOR_OFFERS_ERROR, error: e.response});
+    }
+}
