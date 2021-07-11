@@ -22,6 +22,14 @@ module.exports = {
           passwordHash: await bcrypt.hashSync('Test1234', SALT_ROUNDS),
           email: 'creator@mail.com',
           role: 'creator'
+        },
+        {
+          firstName: 'Moderator',
+          lastName: 'Moderatorovich',
+          displayName: 'moderator',
+          passwordHash: await bcrypt.hashSync('Test1234', SALT_ROUNDS),
+          email: 'moderator@mail.com',
+          role: 'moderator'
         }
       ],
       {}
