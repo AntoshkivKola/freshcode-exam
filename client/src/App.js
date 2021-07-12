@@ -20,6 +20,7 @@ import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatCo
 import { requestAuthRefresh } from './actions/actionCreator'
 import constants from './constants'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import HowItWorks from './pages/HowItWorks'
 
 function App () {
   const dispatch = useDispatch()
@@ -48,6 +49,9 @@ function App () {
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/registration' component={RegistrationPage} />
+        <Route exact path='/how-it-works' component={HowItWorks} />
+        <Route exact path='/howItWorks.html'/>
+    
         <PrivateRoute
           roles={['customer']}
           exact
