@@ -17,14 +17,14 @@ const ModeratorDashboard = props => {
     getOffers({ limit: 5, offset: 0 })
   }, [])
 
-  const changeOfferStatus = ({ offerId, newStatus, reasonOfBan }) => {
+  const changeOfferStatus = ({ offerId, newStatus, reasonOfBan, customerId }) => {
     confirmAlert({
       title: 'confirm',
       message: 'Are u sure?',
       buttons: [
         {
           label: 'Yes',
-          onClick: () => setOfferStatus({ offerId, newStatus, reasonOfBan })
+          onClick: () => setOfferStatus({ offerId, newStatus, reasonOfBan, customerId })
         },
         {
           label: 'No'
@@ -33,7 +33,6 @@ const ModeratorDashboard = props => {
     })
   }
   const loadMore = () => getOffers({ limit: 5, offset: offers.length })
-
   return (
     <div className={styles.offersContainer}>
       {offers.map(offer => (

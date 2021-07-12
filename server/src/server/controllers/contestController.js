@@ -127,9 +127,6 @@ module.exports.setNewOffer = async (req, res, next) => {
     const result = await contestQueries.createOffer(obj);
     delete result.contestId;
     delete result.userId;
-    controller
-      .getNotificationController()
-      .emitEntryCreated(req.body.customerId);
     const User = Object.assign({}, req.tokenData, { id: req.tokenData.userId });
     res.send(Object.assign({}, result, { User }));
   } catch (e) {
@@ -222,7 +219,7 @@ const resolveOffer = async (
 
 module.exports.banOrPandingOffer = async (req, res, next) => {
   const {
-    body: { newStatus, offerId, reasonOfBan },
+    body: { newStatus, offerId, reasonOfBan, customerId },
   } = req;
   try {
     const offer = await db.Offer.update(
@@ -231,6 +228,13 @@ module.exports.banOrPandingOffer = async (req, res, next) => {
         where: { id: offerId },
       }
     );
+    if(newStatus === CONSTANTS.OFFER_STATUSES.PENDING){
+      console.log('this must be a notification', customerId)
+      controller
+        .getNotificationController()
+        .emitEntryCreated(customerId);
+    }
+   
     res.send(offer);
   } catch (err) {
     next(err);
@@ -354,6 +358,11 @@ module.exports.getModeratorOffers = async (req, res, next) => {
           attributes: {
             exclude: ['password', 'role', 'balance'],
           },
+        },
+        {
+          model: db.Contest,
+          required: true,
+          attributes:  ['userId'],
         },
       ],
     });
