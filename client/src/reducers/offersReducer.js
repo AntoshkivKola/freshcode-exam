@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
         ...state,
         isFetching: false,
         error: null,
-        offers: action.data
+        offers: [...state.offers, ...action.data]
       }
     }
     case ACTION.GET_MODERATOR_OFFERS_ERROR: {

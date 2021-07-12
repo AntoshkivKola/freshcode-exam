@@ -11,3 +11,17 @@
   max-width: 1400px;
   width: 100%;
 }
+.loadMore{
+  margin:50px auto;
+  padding: 15px 40px;
+  border-radius: 5px;
+  border: none;  
+  cursor: pointer;
+  background-color: rgb(6, 181, 250);
+  color: rgb(223, 246, 245);
+  font-size: 20px;
+  text-transform: uppercase;
+  &:active{
+    background-color: rgb(6, 148, 204);
+  }
+}

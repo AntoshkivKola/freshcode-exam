@@ -14,7 +14,7 @@ import ModeratorOfferBox from '../ModeratorOfferBox'
 const ModeratorDashboard = props => {
   const { getOffers, offers, setOfferStatus } = props
   useEffect(() => {
-    getOffers()
+    getOffers({ limit: 5, offset: 0 })
   }, [])
 
   const changeOfferStatus = ({ offerId, newStatus, reasonOfBan }) => {
@@ -24,7 +24,7 @@ const ModeratorDashboard = props => {
       buttons: [
         {
           label: 'Yes',
-          onClick: () => setOfferStatus({ offerId, newStatus,reasonOfBan })
+          onClick: () => setOfferStatus({ offerId, newStatus, reasonOfBan })
         },
         {
           label: 'No'
@@ -32,8 +32,8 @@ const ModeratorDashboard = props => {
       ]
     })
   }
+  const loadMore = () => getOffers({ limit: 5, offset: offers.length })
 
-  //<li key={offer.id}>{JSON.stringify(offer)}</li>
   return (
     <div className={styles.offersContainer}>
       {offers.map(offer => (
@@ -43,6 +43,9 @@ const ModeratorDashboard = props => {
           offer={offer}
         />
       ))}
+      <button onClick={loadMore} className={styles.loadMore}>
+        Load more offers
+      </button>
     </div>
   )
 }

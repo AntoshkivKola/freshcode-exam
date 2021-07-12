@@ -333,11 +333,13 @@ module.exports.getContests = (req, res, next) => {
 module.exports.getModeratorOffers = async (req, res, next) => {
   try {
     console.log('getting offers>>>>>>>>>>');
-
+    const { body:pagination } = req;
+    
     const offers = await db.Offer.findAll({
       where: { status: CONSTANTS.OFFER_STATUSES.MODERATED },
       attributes: { exclude: ['userId', 'contestId'] },
-      order: [['id', 'desc']],
+      order: [['id', 'asc']],
+      ...pagination,
       include: [
         {
           model: db.User,
