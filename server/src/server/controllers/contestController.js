@@ -220,10 +220,12 @@ const resolveOffer = async (
 };
 
 module.exports.banOrPandingOffer = async (req, res, next) => {
-  const {body:{newStatus, offerId}} = req;
+  const {
+    body: { newStatus, offerId, reasonOfBan },
+  } = req;
   try {
     const offer = await db.Offer.update(
-      { status: newStatus },
+      { status: newStatus, reasonOfBan: reasonOfBan },
       {
         where: { id: offerId },
       }
