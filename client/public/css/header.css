@@ -1,0 +1,82 @@
+.header {
+  position: fixed;
+  box-shadow:  rgba(84, 89, 101, 0.13) 0px 3px 14px 0px;
+  color: #77838f;
+  letter-spacing: 0.1rem;
+  width: 100%;
+  z-index:5;
+  background-color: white;
+}
+.header-top,
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-top {
+  font-size: 0.95rem;
+  font-weight: 300;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+.header-bottom {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.header-top .link {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.link:hover {
+  color: #0052ea;
+}
+.btn-search{
+  margin-left: 15px;
+}
+.btn-search:hover {
+  color: black !important;
+}
+.header-bottom {
+}
+.logo-wrapper {
+  position: relative;
+  width: 150px;
+  height: 50px;
+}
+.logo {
+}
+.nav {
+  display: flex;
+}
+.nav-list {
+  display: flex;
+  align-items: center;
+}
+.nav-item {
+  padding: 25px 15px;
+}
+.nav-item:first-child {
+  padding-left: 0;
+}
+.nav-item:last-child {
+  padding: 0 0 0 15px;
+}
+.nav-item:hover {
+  color: #377dff;
+}
+.nav-text::after {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+  font-size: 65%;
+  font-weight: 900;
+  content: "\f107";
+  margin-left: .5rem;
+  transition: 0.3s ease;
+}
+
+.header .btn {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  width: 130px;
+  height: 45px;
+}
