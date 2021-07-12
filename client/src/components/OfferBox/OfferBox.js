@@ -82,11 +82,22 @@ const OfferBox = (props) => {
     };
 
     const offerStatus = () => {
-        const {status} = props.data;
+        const {status, reasonOfBan} = props.data;
+        
         if (status === CONSTANTS.OFFER_STATUS_REJECTED) {
             return <i className={classNames("fas fa-times-circle reject", styles.reject)}/>
         } else if (status === CONSTANTS.OFFER_STATUS_WON) {
             return <i className={classNames("fas fa-check-circle resolve", styles.resolve)}/>
+        } else if (status === CONSTANTS.OFFER_STATUS_BANNED) {
+            console.log(reasonOfBan)
+            return <>
+                <i className={classNames("fas fa-ban reject", styles.reject)}/>
+                <span className={styles.reasonOfBan}>{reasonOfBan}</span>
+            </>
+        } else if (status === CONSTANTS.OFFER_STATUS_PENDING) {
+            return <i className={classNames("fas fa-user-clock", styles.pending)}/>
+        } else if (status === CONSTANTS.OFFER_STATUS_MODERATE) {
+            return <i className={classNames("fas fa-user-cog", styles.pending)}/>
         }
         return null;
     };
@@ -151,7 +162,7 @@ const OfferBox = (props) => {
                 <div onClick={rejectOffer} className={styles.rejectBtn}>Reject</div>
             </div>}
         </div>
-    )
+  )
 };
 
 

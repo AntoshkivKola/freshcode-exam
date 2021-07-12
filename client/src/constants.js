@@ -13,6 +13,8 @@ export default {
   LOGO_CONTEST: 'logo',
   TAGLINE_CONTEST: 'tagline',
   OFFER_STATUS_REJECTED: 'rejected',
+  OFFER_STATUS_BANNED: 'banned',
+  OFFER_STATUS_MODERATE: 'moderated',
   OFFER_STATUS_WON: 'won',
   OFFER_STATUS_PENDING: 'pending',
   STATIC_IMAGES_PATH: '/staticImages/',
