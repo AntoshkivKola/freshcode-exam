@@ -280,6 +280,13 @@ module.exports.getCustomersContests = (req, res, next) => {
         model: db.Offer,
         required: false,
         attributes: ['id'],
+        where: {
+          status: [
+            CONSTANTS.OFFER_STATUSES.REJECTED,
+            CONSTANTS.OFFER_STATUSES.PENDING,
+            CONSTANTS.OFFER_STATUSES.WON,
+          ],
+        },
       },
     ],
   })
@@ -333,8 +340,8 @@ module.exports.getContests = (req, res, next) => {
 module.exports.getModeratorOffers = async (req, res, next) => {
   try {
     console.log('getting offers>>>>>>>>>>');
-    const { body:pagination } = req;
-    
+    const { body: pagination } = req;
+
     const offers = await db.Offer.findAll({
       where: { status: CONSTANTS.OFFER_STATUSES.MODERATED },
       attributes: { exclude: ['userId', 'contestId'] },

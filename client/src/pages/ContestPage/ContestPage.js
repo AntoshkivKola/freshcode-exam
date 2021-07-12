@@ -120,6 +120,17 @@ class ContestPage extends React.Component {
         });
     };
 
+    getTotalEntries = () => {
+        const {auth:{user:{role}}, contestByIdStore: {offers}} = this.props;
+        if(role === CONSTANTS.CUSTOMER){
+            return offers
+                    .filter(offer => offer.status !== CONSTANTS.OFFER_STATUS_BANNED && offer.status !== CONSTANTS.OFFER_STATUS_MODERATE)
+                    .length
+        } else if(role === CONSTANTS.CREATOR){
+            return offers.length
+        }   
+    }
+    
     render() {
         const {role} = this.props.auth.user;
         const {contestByIdStore, changeShowImage, changeContestViewMode, getData, clearSetOfferStatusError} = this.props;
@@ -165,7 +176,7 @@ class ContestPage extends React.Component {
                                             </div>}
                                 </div>
                                 <ContestSideBar contestData={contestData}
-                                                totalEntries={offers.length}/>
+                                                totalEntries={this.getTotalEntries()}/>
                             </div>)
                     )
                 }
