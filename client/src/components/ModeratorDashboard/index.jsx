@@ -10,20 +10,21 @@ import {
 import CONSTANTS from '../../constants'
 
 import styles from './ModeratorDashboard.module.scss'
+import ModeratorOfferBox from '../ModeratorOfferBox'
 const ModeratorDashboard = props => {
   const { getOffers, offers, setOfferStatus } = props
   useEffect(() => {
     getOffers()
   }, [])
 
-  const changeOfferStatus = ({ offerId, newStatus }) => {
+  const changeOfferStatus = ({ offerId, newStatus, reasonOfBan }) => {
     confirmAlert({
       title: 'confirm',
       message: 'Are u sure?',
       buttons: [
         {
           label: 'Yes',
-          onClick: () => setOfferStatus({ offerId, newStatus })
+          onClick: () => setOfferStatus({ offerId, newStatus,reasonOfBan })
         },
         {
           label: 'No'
@@ -35,75 +36,13 @@ const ModeratorDashboard = props => {
   //<li key={offer.id}>{JSON.stringify(offer)}</li>
   return (
     <div className={styles.offersContainer}>
-      {offers.map(offer => {
-        const {
-          id: offerId,
-          text,
-          fileName,
-          User: { avatar, firstName, lastName, email, id: userId }
-        } = offer
-        return (
-          <div key={offerId} className={styles.offerContainer}>
-            <div className={styles.mainInfoContainer}>
-              <div className={styles.userInfo}>
-                <div className={styles.creativeInfoContainer}>
-                  <img
-                    src={
-                      avatar
-                        ? `${CONSTANTS.publicURL}${avatar}`
-                        : CONSTANTS.ANONYM_IMAGE_PATH
-                    }
-                    alt='user'
-                  />
-                  <div className={styles.nameAndEmail}>
-                    <span>{firstName + ' ' + lastName}</span>
-                    <span>{email}</span>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.responseConainer}>
-                {/*      <img
-                      onClick={() =>
-                        props.changeShowImage({
-                          imagePath: fileName,
-                          isShowOnFull: true
-                        })
-                      }
-                      className={styles.responseLogo}
-                      src={`${CONSTANTS.publicURL}${fileName}`}
-                      alt='logo'
-                    />
-                  */}
-                <span className={styles.response}>{text}</span>
-              </div>
-            </div>
-            <div className={styles.btnsContainer}>
-              <div
-                onClick={() =>
-                  changeOfferStatus({
-                    newStatus: 'pending',
-                    offerId
-                  })
-                }
-                className={styles.resolveBtn}
-              >
-                Resolve
-              </div>
-              <div
-                onClick={() =>
-                  changeOfferStatus({
-                    newStatus: 'banned',
-                    offerId
-                  })
-                }
-                className={styles.rejectBtn}
-              >
-                BAN
-              </div>
-            </div>
-          </div>
-        )
-      })}
+      {offers.map(offer => (
+        <ModeratorOfferBox
+          key={offer.id}
+          changeOfferStatus={changeOfferStatus}
+          offer={offer}
+        />
+      ))}
     </div>
   )
 }
