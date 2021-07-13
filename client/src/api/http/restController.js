@@ -43,6 +43,9 @@ export const getContestById = (data) => {
     });
 };
 
+export const getOffers = (data) => httpClient.post('getOffers', data);
+export const banOrPandingOffer = (data) => httpClient.post('banOrPandingOffer', data);
+
 
 
 

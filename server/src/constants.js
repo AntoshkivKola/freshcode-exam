@@ -29,7 +29,8 @@ module.exports = {
 
   ROLES: {
     CUSTOMER: 'customer',
-    CREATOR: 'creator'
+    CREATOR: 'creator',
+    MODERATOR: 'moderator'
   },
 
   CREATOR_ENTRIES: 'creator_entries',
@@ -42,7 +43,9 @@ module.exports = {
   OFFER_STATUSES: {
     PENDING: 'pending',
     REJECTED: 'rejected',
-    WON: 'won'
+    WON: 'won',
+    MODERATED: 'moderated',
+    BANNED: 'banned'
   },
   CONTESTS_STATUSES: {
     ACTIVE: 'active',

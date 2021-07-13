@@ -6,7 +6,7 @@ module.exports.registrationSchem = yup.object().shape({
   displayName: yup.string().required().min(1),
   email: yup.string().email().required().min(4),
   password: yup.string().required().min(1),
-  role: yup.string().matches(/(customer|creator)/).required()
+  role: yup.string().matches(/(customer|creator|moderator)/).required()
 });
 
 module.exports.loginSchem = yup.object().shape({

@@ -109,6 +109,10 @@ class RegistrationForm extends React.Component{
                    strRole='Join As a Creative'
                    infoRole='I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.'
                    component={ RoleInput } id={ CONSTANTS.CREATOR }/>
+            <Field name='role' type='radio' value={ CONSTANTS.MODERATOR }
+                   strRole='Join As a moderator'
+                   infoRole='I plan to moderate othe ideas.'
+                   component={ RoleInput } id={ CONSTANTS.MODERATOR }/>
           </div>
           <div className={ styles.termsOfService }>
             <Field

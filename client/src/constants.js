@@ -5,6 +5,7 @@ const serverPort = 3000;
 export default {
   CUSTOMER: 'customer',
   CREATOR: 'creator',
+  MODERATOR: 'moderator',
   CONTEST_STATUS_ACTIVE: 'active',
   CONTEST_STATUS_FINISHED: 'finished',
   CONTEST_STATUS_PENDING: 'pending',
@@ -12,6 +13,8 @@ export default {
   LOGO_CONTEST: 'logo',
   TAGLINE_CONTEST: 'tagline',
   OFFER_STATUS_REJECTED: 'rejected',
+  OFFER_STATUS_BANNED: 'banned',
+  OFFER_STATUS_MODERATE: 'moderated',
   OFFER_STATUS_WON: 'won',
   OFFER_STATUS_PENDING: 'pending',
   STATIC_IMAGES_PATH: '/staticImages/',

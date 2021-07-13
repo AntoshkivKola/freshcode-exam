@@ -36,6 +36,9 @@ module.exports = {
       originalFileName: {
         type: Sequelize.STRING
       },
+      reasonOfBan: {
+        type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.ENUM(...Object.values(OFFER_STATUSES)),
         defaultValue: OFFER_STATUSES.PENDING,

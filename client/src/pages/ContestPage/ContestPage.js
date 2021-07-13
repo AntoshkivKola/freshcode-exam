@@ -44,13 +44,20 @@ class ContestPage extends React.Component {
 
 
     setOffersList = () => {
+        const {offers,contestData} = this.props.contestByIdStore;
+        const {role} = this.props.auth.user;
+        console.log(role, CONSTANTS.CUSTOMER)
         const array = [];
-        for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
-            array.push(<OfferBox data={this.props.contestByIdStore.offers[i]}
-                                 key={this.props.contestByIdStore.offers[i].id} needButtons={this.needButtons}
-                                 setOfferStatus={this.setOfferStatus}
-                                 contestType={this.props.contestByIdStore.contestData.contestType} date={new Date()}/>)
+        for (let i = 0; i < offers.length; i++) {
+            if(role === CONSTANTS.CUSTOMER && (offers[i].status === 'moderated' || offers[i].status === 'banned' )){
+                continue;
+            }
+            array.push(<OfferBox data={offers[i]}
+                                key={offers[i].id} needButtons={this.needButtons}
+                                setOfferStatus={this.setOfferStatus}
+                                contestType={contestData.contestType} date={new Date()}/>)
         }
+        console.log(array.length)
         return array.length !== 0 ? array : <div className={styles.notFound}>There is no suggestion at this moment</div>
     };
 
@@ -113,6 +120,17 @@ class ContestPage extends React.Component {
         });
     };
 
+    getTotalEntries = () => {
+        const {auth:{user:{role}}, contestByIdStore: {offers}} = this.props;
+        if(role === CONSTANTS.CUSTOMER){
+            return offers
+                    .filter(offer => offer.status !== CONSTANTS.OFFER_STATUS_BANNED && offer.status !== CONSTANTS.OFFER_STATUS_MODERATE)
+                    .length
+        } else if(role === CONSTANTS.CREATOR){
+            return offers.length
+        }   
+    }
+    
     render() {
         const {role} = this.props.auth.user;
         const {contestByIdStore, changeShowImage, changeContestViewMode, getData, clearSetOfferStatusError} = this.props;
@@ -158,7 +176,7 @@ class ContestPage extends React.Component {
                                             </div>}
                                 </div>
                                 <ContestSideBar contestData={contestData}
-                                                totalEntries={offers.length}/>
+                                                totalEntries={this.getTotalEntries()}/>
                             </div>)
                     )
                 }
