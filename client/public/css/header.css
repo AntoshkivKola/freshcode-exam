@@ -10,7 +10,6 @@
 .header-top,
 .header-bottom {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .header-top {
@@ -18,6 +17,8 @@
   font-weight: 300;
   padding-top: 15px;
   padding-bottom: 10px;
+  justify-content: space-between;
+
 }
 .header-bottom {
   padding-top: 10px;
@@ -37,14 +38,51 @@
 }
 
 .logo-wrapper {
+  padding: 5px;
+  margin-bottom: 5px;
   position: relative;
   width: 150px;
   height: 50px;
 }
-.logo {
-}
-.nav {
+.burger-nav-btn {
   display: flex;
+  align-items: center;
+  padding: 5px;
+  margin-right: 5px;
+  width: 35px;
+  height: 24px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.icon-nav::after,
+.icon-nav::before,
+.icon-nav {
+  display: inline-block;
+  width: 25px;
+  height: 2px;
+  background-color: #8c98a4;
+  border-radius: 5px;
+}
+.icon-nav {
+  position: relative;
+}
+.icon-nav::after,
+.icon-nav::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+
+}
+.icon-nav::after {
+  top: 6px;
+}
+.icon-nav::before {
+  bottom: 6px;
+}
+
+.nav {
+  display: none;
 }
 .nav-list {
   display: flex;
@@ -112,19 +150,42 @@
   margin-left: 0.5rem;
   transition: 0.3s ease;
 }
-.sub-item-mark::after{
+.sub-item-mark::after {
   display: inline-block;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-size: 80%;
   font-weight: 900;
-  content: "\f105";
+  content: '\f105';
   margin-left: auto;
-  margin-right: .04rem;
+  margin-right: 0.04rem;
   transition: 0.3s ease;
+}
+
+.links-wrapper{
+  display: flex;
+}
+.auth-links{
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-icon{
+  margin-left: 20px;  
 }
 .header .btn {
   padding: 10px 18px;
   font-size: 0.95rem;
   width: 130px;
   height: 45px;
+}
+@media (min-width: 992px) {
+  .nav {
+    display: flex;
+  }
+  .burger-nav-btn{
+    display: none;
+  }
+  .header-bottom{
+    justify-content: space-between;
+  }
+
 }
