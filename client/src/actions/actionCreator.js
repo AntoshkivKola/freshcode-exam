@@ -469,3 +469,17 @@ export const eventError=(err)=>{
     }
 }
 
+export const changePassword = (data) => {
+    return {
+        type: ACTION.AUTH_ACTION_CHANGE_PASSWORD,
+        data: data
+    }
+};
+
+export const updateUserPassword = (data) => {
+    return {
+        type: ACTION.AUTH_ACTION_UPDATE_PASSWORD,
+        data: data
+    }
+};
+

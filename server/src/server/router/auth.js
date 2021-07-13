@@ -10,5 +10,7 @@ authRouter.post(
   AuthController.signUp
 );
 authRouter.post('/refresh', checkRefreshToken, AuthController.refresh);
+authRouter.post('/change-password', AuthController.changePassword);
+authRouter.post('/update-password', AuthController.updateUserPassword);
 
 module.exports = authRouter;

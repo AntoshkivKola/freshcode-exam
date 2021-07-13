@@ -31,6 +31,14 @@ class AuthApi {
     return this.#_client.post(`${this._url}refresh`, data)
   }
 
+  changePassword = async data => {
+    return this.#_client.post(`${this._url}change-password`, data)
+  }
+
+  updateUserPassword = async data => {
+    return this.#_client.post(`${this._url}update-password`, data)
+  }
+
   logout = () => {
     window.localStorage.removeItem(CONSTANTS.REFRESH_TOKEN)
     this.#_accessToken = null
@@ -54,7 +62,7 @@ class AuthApi {
       config: { url }
     } = response
 
-    if (url.includes(this._url)) {
+    if (url.includes(this._url) && !url.includes('change-password')) {
       const {
         data: {
           data: { tokenPair }

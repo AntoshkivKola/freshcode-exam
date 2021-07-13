@@ -24,6 +24,7 @@ const LoginPage = (props) => {
         <div className={ styles.loginFormContainer }>
           <LoginForm changeRoute={ changeRoute }/>
         </div>
+        
       </div>
     </div>
   );

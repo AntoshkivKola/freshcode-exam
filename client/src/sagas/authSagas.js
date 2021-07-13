@@ -52,3 +52,26 @@ export function * logoutSaga (action) {
   yield Api.auth.logout()
   yield put({ type: ACTION.CLEAR_STORE })
 }
+
+export function * changePasswordSaga(action){
+  yield put({ type: ACTION.AUTH_ACTION_CHANGE_PASSWORD_REQUEST });
+  console.log('yes i ma hear you!')
+  try {
+    const {data} = yield Api.auth.changePassword(action.data)
+    // history.replace('/')
+    yield put({ type: ACTION.AUTH_ACTION_CHANGE_PASSWORD_SUCCESS })
+  } catch (e) {
+    console.log(e)
+    yield put({ type: ACTION.AUTH_ACTION_CHAHGE_PASSWORD_ERROR, error: e.response })
+  }
+}
+
+export function * updateUserPassword(action){
+  console.log('passwordToken in the authSaga')
+  try {
+    yield Api.auth.updateUserPassword(action.data)
+  } catch (e) {
+    console.log(e)
+    yield put({ type: ACTION.AUTH_ACTION_ERROR, error: e.response })
+  }
+}

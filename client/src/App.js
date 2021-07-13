@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import './App.css'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
+import ChangePassword from './pages/ChangePassword'
 import Payment from './pages/Payment/Payment'
 import StartContestPage from './pages/StartContestPage/StartContestPage'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -56,6 +57,7 @@ function App () {
 
         <Route exact path='/howItWorks.html'/>
         <Route exact path='/events' component={Events} />
+        <Route exact path='/changePassword' component={ChangePassword} />
 
         <PrivateRoute
           roles={['customer']}
@@ -125,5 +127,5 @@ function App () {
     </Router>
   )
 }
-
+ 
 export default App
