@@ -1,0 +1,4 @@
+db.messages.aggregate([
+  { $match: { 'body': { $regex: /паровоз/ }}},
+  { $count: "countOf"}
+])
