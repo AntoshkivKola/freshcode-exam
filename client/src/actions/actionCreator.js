@@ -440,3 +440,32 @@ export const changeModalShow=(data)=>{
         data: data
     }
 };
+
+export const createEvent=(event)=>{
+    return {
+        type: ACTION.CREATE_EVENT,
+        data: event
+    }
+}
+
+export const getEvents=(events)=>{
+    return {
+        type: ACTION.GET_EVENTS,
+        data: events
+    }
+}
+
+export const deleteEvent=(id)=>{
+    return {
+        type: ACTION.DELETE_EVENT,
+        data: id
+    }
+}
+
+export const eventError=(err)=>{
+    return {
+        type: ACTION.ERROR_EVENT,
+        err: err
+    }
+}
+

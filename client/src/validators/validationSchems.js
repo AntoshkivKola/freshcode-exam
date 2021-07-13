@@ -63,3 +63,8 @@ export default {
         file: yup.mixed()
     })
 }
+export const CreateEventSchema = yup.object().shape({
+    body: yup.string().test('test-firstName','required',value => (value && value.trim().length>=1)).required('required'),
+    deadline: yup.date().min(new Date(), 'deadline can`t be in the pust').required('required'),
+    reminder: yup.string().test('test-displayName','required',value => (value && value.trim().length>=1)).required('required'),
+})

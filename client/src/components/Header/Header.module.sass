@@ -71,6 +71,8 @@
               width: 100%
               padding: 0 15px
 
+         
+              
             &:hover
               span
                 color: #f27e51
@@ -152,6 +154,7 @@
       .userInfo
         display: flex
         justify-content: center
+        position: relative
         align-items: center
         padding: 0 15px
         border-right: 1px solid #ebebeb
@@ -160,9 +163,10 @@
           ul
             display: block
             position: absolute
-            top: 45px
+            top: 5px
 
         ul
+
           border: 1px solid #eee
           z-index: 500
           padding: 5px 0
@@ -195,6 +199,9 @@
           font-weight: 400
           font-size: 16px
           border: none
+
+       
+          
 
       span
         padding: 0 15px
@@ -252,3 +259,19 @@
       color: lightyellow
       text-decoration: underline
 
+.eventsLink
+  position: relative  
+.countEvents
+  position: absolute
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 14px
+  text-align: center
+  top: -5px
+  right: -5px
+  width: 20px
+  height: 20px
+  background-color: red
+  color: white
+  border-radius: 100%

@@ -1,0 +1,44 @@
+.event {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 290px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  border-top: 1px solid #ccc;
+  padding-top:5px;
+  @media (min-width: 576px) {
+    align-items: center;
+    flex-direction: row;
+  }
+  td {
+    width: 30%;
+    @media (max-width: 575px) {
+      margin-bottom: 5px;
+    }
+  }
+  .btnCol {
+    width: 10%;
+  }
+}
+.eventDeleteBtn {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+
+  background-color: rgba(229, 190, 190, 0.144);
+  color: red;
+  font-size: 20px;
+  text-align: center;
+
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: rgba(199, 148, 148, 0.239);
+  }
+}
