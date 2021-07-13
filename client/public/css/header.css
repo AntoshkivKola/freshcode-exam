@@ -1,10 +1,10 @@
 .header {
   position: fixed;
-  box-shadow:  rgba(84, 89, 101, 0.13) 0px 3px 14px 0px;
+  box-shadow: rgba(84, 89, 101, 0.13) 0px 3px 14px 0px;
   color: #77838f;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.06rem;
   width: 100%;
-  z-index:5;
+  z-index: 5;
   background-color: white;
 }
 .header-top,
@@ -21,7 +21,6 @@
 }
 .header-bottom {
   padding-top: 10px;
-  padding-bottom: 5px;
 }
 .header-top .link {
   padding-left: 8px;
@@ -30,14 +29,13 @@
 .link:hover {
   color: #0052ea;
 }
-.btn-search{
+.btn-search {
   margin-left: 15px;
 }
 .btn-search:hover {
   color: black !important;
 }
-.header-bottom {
-}
+
 .logo-wrapper {
   position: relative;
   width: 150px;
@@ -52,8 +50,46 @@
   display: flex;
   align-items: center;
 }
+.sub-item:hover > .nav-sub-list,
+.nav-item:hover > .nav-sub-list {
+  display: flex;
+}
+.nav-sub-list {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+
+  position: absolute;
+  top: 70px;
+  left: 0;
+  min-width: 240px;
+  padding: 10px 0;
+
+  font-size: 0.9rem;
+  text-align: left;
+
+  color: #77838f;
+  background-color: white;
+  border-top: 0.1875rem solid #377dff;
+  border-bottom-right-radius: 0.3125rem;
+  border-bottom-left-radius: 0.3125rem;
+  box-shadow: rgba(55, 125, 255, 0.075) 0px 8px 20px 0px;
+}
+.nav-sub-list .nav-sub-list {
+  top: -10px;
+  left: 95%;
+}
+.sub-item {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 30px;
+  width: 100%;
+}
 .nav-item {
+  position: relative;
   padding: 25px 15px;
+  padding-bottom: 30px;
 }
 .nav-item:first-child {
   padding-left: 0;
@@ -64,16 +100,28 @@
 .nav-item:hover {
   color: #377dff;
 }
-.nav-text::after {
+.nav-text {
+  text-transform: capitalize;
+}
+.nav-list > .nav-item > .nav-text::after {
   display: inline-block;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-size: 65%;
   font-weight: 900;
-  content: "\f107";
-  margin-left: .5rem;
+  content: '\f107';
+  margin-left: 0.5rem;
   transition: 0.3s ease;
 }
-
+.sub-item-mark::after{
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+  font-size: 80%;
+  font-weight: 900;
+  content: "\f105";
+  margin-left: auto;
+  margin-right: .04rem;
+  transition: 0.3s ease;
+}
 .header .btn {
   padding: 10px 18px;
   font-size: 0.95rem;
