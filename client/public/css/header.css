@@ -26,6 +26,7 @@
   padding-left: 8px;
   padding-right: 8px;
 }
+.link:focus,
 .link:hover {
   color: #0052ea;
 }
@@ -135,6 +136,7 @@
 .nav-item:last-child {
   padding: 0 0 0 15px;
 }
+.nav-item:focus,
 .nav-item:hover {
   color: #377dff;
 }
