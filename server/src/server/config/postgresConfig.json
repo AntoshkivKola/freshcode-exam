@@ -1,5 +1,6 @@
 {
   "development": {
+    "user": "postgres",
     "username": "postgres",
     "password": "password",
     "database": "todo-dev",

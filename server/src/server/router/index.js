@@ -3,7 +3,7 @@ const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const userController = require('../controllers/userController');
 const contestController = require('../controllers/contestController');
 const validators = require('../middlewares/validators');
-const chatController = require('../controllers/chatController');
+const chatControllerSQL = require('../controllers/chatControllerSQL');
 const upload = require('../utils/fileUpload');
 const authRouter = require('./auth');
 const { checkAccessToken } = require('../middlewares/tokenMw');
@@ -97,46 +97,26 @@ router.post(
   userController.cashout
 );
 
-router.post('/newMessage',  chatController.addMessage);
+router.post('/newMessage',   chatControllerSQL.addMessage);//chatController.addMessage,
 
-router.post('/getChat',  chatController.getChat);
+router.post('/getChat',  chatControllerSQL.getChat);
 
-router.post('/getPreview',  chatController.getPreview);
+router.post('/getPreview',  chatControllerSQL.getPreview);
 
-router.post('/blackList',  chatController.blackList);
+router.post('/blackList',  chatControllerSQL.blackList);
 
-router.post('/favorite',  chatController.favoriteChat);
+router.post('/favorite',  chatControllerSQL.favoriteChat);
 
-router.post(
-  '/createCatalog',
-  
-  chatController.createCatalog
-);
+router.post('/createCatalog',  chatControllerSQL.createCatalog);
 
-router.post(
-  '/updateNameCatalog',
-  
-  chatController.updateNameCatalog
-);
+router.post('/updateNameCatalog',  chatControllerSQL.updateNameCatalog);
 
-router.post(
-  '/addNewChatToCatalog',
-  
-  chatController.addNewChatToCatalog
-);
+router.post('/addNewChatToCatalog', chatControllerSQL.addNewChatToCatalog);
 
-router.post(
-  '/removeChatFromCatalog',
-  
-  chatController.removeChatFromCatalog
-);
+router.post('/removeChatFromCatalog', chatControllerSQL.removeChatFromCatalog);
 
-router.post(
-  '/deleteCatalog',
-  
-  chatController.deleteCatalog
-);
+router.post('/deleteCatalog',  chatControllerSQL.deleteCatalog);
 
-router.post('/getCatalogs',  chatController.getCatalogs);
+router.post('/getCatalogs',  chatControllerSQL.getCatalogs);
 
 module.exports = router;
