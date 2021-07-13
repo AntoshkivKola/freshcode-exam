@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 const db = require('../models/index');
 const ServerError = require('../errors/ServerError');
 const contestQueries = require('./queries/contestQueries');
@@ -219,8 +220,9 @@ const resolveOffer = async (
 
 module.exports.banOrPandingOffer = async (req, res, next) => {
   const {
-    body: { newStatus, offerId, reasonOfBan, customerId },
+    body: { newStatus, offerId, reasonOfBan, customerId, email, text },
   } = req;
+  console.log('email', email);
   try {
     const offer = await db.Offer.update(
       { status: newStatus, reasonOfBan: reasonOfBan },
@@ -229,12 +231,35 @@ module.exports.banOrPandingOffer = async (req, res, next) => {
       }
     );
     if(newStatus === CONSTANTS.OFFER_STATUSES.PENDING){
-      console.log('this must be a notification', customerId)
       controller
         .getNotificationController()
         .emitEntryCreated(customerId);
     }
-   
+    
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'testsender615',
+        pass: 'testsender87o(p)',
+      },
+    });
+
+    await transporter.sendMail(
+      {
+        from: '"EXAMsqyadhelp.com"',
+        to: email,
+        subject: `One of your offer have new status!`,
+        text: `Your offer "${text}" was ${newStatus === CONSTANTS.OFFER_STATUSES.BANNED? 'banned  by moderator. Reason: '+reasonOfBan  : 'resolve by moderator'}.`,
+      },
+      function (error, response) {
+        if (error) {
+          console.log(error);
+        }
+      }
+    );
+    
+    console.log('email was send!')
+
     res.send(offer);
   } catch (err) {
     next(err);
@@ -366,8 +391,6 @@ module.exports.getModeratorOffers = async (req, res, next) => {
         },
       ],
     });
-    console.log('OOOOOOOOOOOOOOOOOOFFERS!!!!>>>>>>>>>>');
-    console.log(offers);
     res.send(offers);
   } catch (err) {
     next(new ServerError());

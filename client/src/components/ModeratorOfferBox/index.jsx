@@ -10,8 +10,8 @@ const ModeratorOfferBox = props => {
       id: offerId,
       text,
       fileName,
-      User: { avatar, firstName, lastName, email},
-      Contest: { userId: customerId  }
+      User: { avatar, firstName, lastName, email },
+      Contest: { userId: customerId }
     }
   } = props
   const [inputValue, setInputValue] = useState('')
@@ -19,14 +19,28 @@ const ModeratorOfferBox = props => {
   const changeInput = ({ target: { value } }) => {
     return setInputValue(value)
   }
-
-  const changeStatus = ({ newStatus, offerId, reasonOfBan, customerId }) => {
+  console.log('email', email)
+  const changeStatus = ({
+    newStatus,
+    offerId,
+    reasonOfBan,
+    customerId,
+    email,
+    text
+  }) => {
     if (newStatus === 'banned' && reasonOfBan.trim() === '') {
       setIsEmpty(true)
       return
     }
     setIsEmpty(false)
-    changeOfferStatus({ newStatus, offerId, reasonOfBan, customerId })
+    changeOfferStatus({
+      newStatus,
+      offerId,
+      reasonOfBan,
+      customerId,
+      email,
+      text
+    })
   }
 
   return (
@@ -72,7 +86,9 @@ const ModeratorOfferBox = props => {
               newStatus: 'pending',
               offerId,
               reasonOfBan: null,
-              customerId
+              customerId,
+              email,
+              text
             })
           }
           className={styles.resolveBtn}
@@ -85,7 +101,9 @@ const ModeratorOfferBox = props => {
               newStatus: 'banned',
               offerId,
               reasonOfBan: inputValue,
-              customerId
+              customerId,
+              email,
+              text
             })
           }
           className={styles.rejectBtn}

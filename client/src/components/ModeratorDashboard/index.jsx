@@ -17,14 +17,29 @@ const ModeratorDashboard = props => {
     getOffers({ limit: 5, offset: 0 })
   }, [])
 
-  const changeOfferStatus = ({ offerId, newStatus, reasonOfBan, customerId }) => {
+  const changeOfferStatus = ({
+    offerId,
+    newStatus,
+    reasonOfBan,
+    customerId,
+    email,
+    text
+  }) => {
     confirmAlert({
       title: 'confirm',
       message: 'Are u sure?',
       buttons: [
         {
           label: 'Yes',
-          onClick: () => setOfferStatus({ offerId, newStatus, reasonOfBan, customerId })
+          onClick: () =>
+            setOfferStatus({
+              offerId,
+              newStatus,
+              reasonOfBan,
+              customerId,
+              email,
+              text
+            })
         },
         {
           label: 'No'
