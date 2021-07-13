@@ -12,6 +12,7 @@ import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
 import FieldFileInput from '../InputComponents/FieldFileInput/FieldFileInput';
 import FormTextArea from '../InputComponents/FormTextArea/FormTextArea';
+import ButtonGroup from '../ButtonGroup';
 import TryAgain from '../TryAgain/TryAgain';
 
 let submitFunc;
@@ -199,6 +200,9 @@ class ContestForm extends React.Component{
                       } }
                     />
                   </div>
+                  <ButtonGroup />      
+                      {/* Todo://ButtonGroup */}
+
                   <div className={ styles.inputContainer }>
                     <span className={ styles.inputHeader }>Tell us about your customers</span>
                     <Field
