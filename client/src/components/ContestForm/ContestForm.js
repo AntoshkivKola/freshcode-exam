@@ -74,6 +74,7 @@ class ContestForm extends React.Component{
               header='type of company'
               optionsArray={ this.props.dataForContest.data.typeOfName }
             />
+            <ButtonGroup />      
           </>
         );
       }
@@ -200,8 +201,7 @@ class ContestForm extends React.Component{
                       } }
                     />
                   </div>
-                  <ButtonGroup />      
-                      {/* Todo://ButtonGroup */}
+                  
 
                   <div className={ styles.inputContainer }>
                     <span className={ styles.inputHeader }>Tell us about your customers</span>
