@@ -65,7 +65,7 @@ class ChangePasswordForm extends React.Component {
             </span>
           </button>
         </form>
-        {checkMail && <span>chealk your email to confirm new password</span>}
+        {checkMail &&  <span className={styles.msg}>Chealk your email to confirm new password</span>}
       </div>
     )
   }
