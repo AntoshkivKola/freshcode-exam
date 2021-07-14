@@ -89,7 +89,6 @@ const OfferBox = (props) => {
         } else if (status === CONSTANTS.OFFER_STATUS_WON) {
             return <i className={classNames("fas fa-check-circle resolve", styles.resolve)}/>
         } else if (status === CONSTANTS.OFFER_STATUS_BANNED) {
-            console.log(reasonOfBan)
             return <>
                 <i className={classNames("fas fa-ban reject", styles.reject)}/>
                 <span className={styles.reasonOfBan}>{reasonOfBan}</span>
