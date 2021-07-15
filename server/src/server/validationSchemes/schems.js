@@ -6,12 +6,12 @@ module.exports.registrationSchem = yup.object().shape({
   displayName: yup.string().required().min(1),
   email: yup.string().email().required().min(4),
   password: yup.string().required().min(1),
-  role: yup.string().matches(/(customer|creator|moderator)/).required()
+  role: yup.string().matches(/(customer|creator|moderator)/).required(),
 });
 
 module.exports.loginSchem = yup.object().shape({
   email: yup.string().email().required().min(4),
-  password: yup.string().required().min(1)
+  password: yup.string().required().min(1),
 });
 
 module.exports.contestSchem = yup.object().shape({
@@ -26,5 +26,5 @@ module.exports.contestSchem = yup.object().shape({
   styleName: yup.string().min(1),
   nameVenture: yup.string().min(1),
   typeOfTagline: yup.string().min(1),
-  brandStyle: yup.string().min(1)
+  brandStyle: yup.string().min(1),
 });

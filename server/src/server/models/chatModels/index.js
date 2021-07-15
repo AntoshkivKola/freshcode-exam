@@ -4,6 +4,7 @@ const Conversation = require('./Conversation');
 const Message = require('./Message');
 
 const config = require('../../config/postgresConfig.json').development;
+
 const client = new Client(config);
 
 Catalog._client = client;

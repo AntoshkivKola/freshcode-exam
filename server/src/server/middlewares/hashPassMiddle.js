@@ -1,6 +1,6 @@
+const bcrypt = require('bcrypt');
 const CONSTANTS = require('../../constants');
 const ServerError = require('../errors/ServerError');
-const bcrypt = require('bcrypt');
 
 module.exports = async (req, res, next) => {
   try {

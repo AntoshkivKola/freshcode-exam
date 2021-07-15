@@ -1,17 +1,17 @@
-'use strict';
+
 const { Model } = require('sequelize');
 const { CONTEST_TYPES, CONTESTS_STATUSES } = require('../../constants');
 
 module.exports = (sequelize, DataTypes) => {
   class Contest extends Model {
-    static associate (models) {
+    static associate(models) {
       Contest.belongsTo(models.User, {
         foreignKey: 'userId',
-        sourceKey: 'id'
+        sourceKey: 'id',
       });
       Contest.hasMany(models.Offer, {
         foreignKey: 'contestId',
-        targetKey: 'id'
+        targetKey: 'id',
       });
     }
   }
@@ -19,76 +19,76 @@ module.exports = (sequelize, DataTypes) => {
     {
       orderId: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'Users',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       contestType: {
         type: DataTypes.ENUM(...Object.values(CONTEST_TYPES)),
-        allowNull: false
+        allowNull: false,
       },
       fileName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       originalFileName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       title: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       typeOfName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       industry: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       focusOfWork: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
       },
       targetCustomer: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
       },
       styleName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       nameVenture: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       typeOfTagline: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       brandStyle: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       status: {
         type: DataTypes.ENUM(...Object.values(CONTESTS_STATUSES)),
-        allowNull: false
+        allowNull: false,
       },
       prize: {
         allowNull: false,
         type: DataTypes.DECIMAL,
         validate: {
-          min: 0
-        }
+          min: 0,
+        },
       },
       priority: {
         allowNull: false,
         type: DataTypes.INTEGER,
         validate: {
-          min: 0
-        }
-      }
+          min: 0,
+        },
+      },
     },
     {
       sequelize,
-      modelName: 'Contest'
-    }
+      modelName: 'Contest',
+    },
   );
   return Contest;
 };

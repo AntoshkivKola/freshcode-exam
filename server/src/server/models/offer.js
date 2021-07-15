@@ -1,21 +1,21 @@
-'use strict';
+
 const { Model } = require('sequelize');
 const { OFFER_STATUSES } = require('../../constants');
 
 module.exports = (sequelize, DataTypes) => {
   class Offer extends Model {
-    static associate (models) {
+    static associate(models) {
       Offer.belongsTo(models.User, {
         foreignKey: 'userId',
-        sourceKey: 'id'
+        sourceKey: 'id',
       });
       Offer.belongsTo(models.Contest, {
         foreignKey: 'contestId',
-        sourceKey: 'id'
+        sourceKey: 'id',
       });
       Offer.hasOne(models.Rating, {
         foreignKey: 'offerId',
-        targetKey: 'id'
+        targetKey: 'id',
       });
     }
   }
@@ -23,34 +23,34 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       contestId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       text: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       fileName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       originalFileName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       status: {
         type: DataTypes.ENUM(...Object.values(OFFER_STATUSES)),
         defaultValue: OFFER_STATUSES.MODERATED,
-        allowNull: false
+        allowNull: false,
       },
       reasonOfBan: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
     },
     {
       sequelize,
-      modelName: 'Offer'
-    }
+      modelName: 'Offer',
+    },
   );
   return Offer;
 };

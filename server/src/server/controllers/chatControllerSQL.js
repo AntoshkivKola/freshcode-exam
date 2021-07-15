@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const db = require('../models/index');
 const userQueries = require('./queries/userQueries');
 const controller = require('../../socketInit');
@@ -7,7 +6,7 @@ const { Message, Conversation, Catalog } = require('../models/chatModels');
 module.exports.addMessage = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
   participants.sort(
-    (participant1, participant2) => participant1 - participant2
+    (participant1, participant2) => participant1 - participant2,
   );
   try {
     const newConversation = await Conversation.findOneOrCreate(participants);
@@ -21,7 +20,7 @@ module.exports.addMessage = async (req, res, next) => {
     await message.save();
     message.participants = participants;
     const interlocutorId = participants.filter(
-      participant => participant !== req.tokenData.userId
+      participant => participant !== req.tokenData.userId,
     )[0];
     const preview = {
       _id: newConversation._id,
@@ -37,7 +36,7 @@ module.exports.addMessage = async (req, res, next) => {
       raw: true,
     });
     controller.getChatController().emitNewMessage(interlocutorId, {
-      message: message,
+      message,
       preview: {
         _id: newConversation._id,
         sender: req.tokenData.userId,
@@ -73,7 +72,7 @@ module.exports.addMessage = async (req, res, next) => {
 module.exports.getChat = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.interlocutorId];
   participants.sort(
-    (participant1, participant2) => participant1 - participant2
+    (participant1, participant2) => participant1 - participant2,
   );
   try {
     const messages = await Message.getMessages(participants);
@@ -101,11 +100,11 @@ module.exports.getPreview = async (req, res, next) => {
     const conversations = await Conversation.getPreview();
 
     const interlocutors = [];
-    conversations.forEach(conversation => {
+    conversations.forEach((conversation) => {
       interlocutors.push(
         conversation.participants.find(
-          participant => participant !== req.tokenData.userId
-        )
+          participant => participant !== req.tokenData.userId,
+        ),
       );
     });
     const senders = await db.User.findAll({
@@ -114,8 +113,8 @@ module.exports.getPreview = async (req, res, next) => {
       },
       attributes: ['id', 'firstName', 'lastName', 'displayName', 'avatar'],
     });
-    conversations.forEach(conversation => {
-      senders.forEach(sender => {
+    conversations.forEach((conversation) => {
+      senders.forEach((sender) => {
         if (conversation.participants.includes(sender.dataValues.id)) {
           conversation.interlocutor = {
             id: sender.dataValues.id,
@@ -144,7 +143,7 @@ module.exports.blackList = async (req, res, next) => {
 
     res.send(chat);
     const interlocutorId = req.body.participants.filter(
-      participant => participant !== req.tokenData.userId
+      participant => participant !== req.tokenData.userId,
     )[0];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {
@@ -163,7 +162,7 @@ module.exports.favoriteChat = async (req, res, next) => {
 
     res.send(chat);
     const interlocutorId = req.body.participants.filter(
-      participant => participant !== req.tokenData.userId
+      participant => participant !== req.tokenData.userId,
     )[0];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {

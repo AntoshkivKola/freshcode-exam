@@ -11,7 +11,8 @@ mongoose.connect(
     if (err) {
       process.exit(1);
     }
-  });
+  },
+);
 
 mongoose.set('debug', env === 'development');
 

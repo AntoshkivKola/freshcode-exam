@@ -1,10 +1,11 @@
-'use strict';
+
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class RefreshToken extends Model {
-    static associate ({ User }) {
+    static associate({ User }) {
       RefreshToken.belongsTo(User, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
       });
     }
   }
@@ -12,19 +13,19 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       value: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       ua: DataTypes.STRING,
-      fingerprint: DataTypes.STRING
+      fingerprint: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: 'RefreshToken'
-    }
+      modelName: 'RefreshToken',
+    },
   );
   return RefreshToken;
 };

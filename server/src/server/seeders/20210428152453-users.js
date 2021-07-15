@@ -1,4 +1,4 @@
-'use strict';
+
 const bcrypt = require('bcrypt');
 const { SALT_ROUNDS } = require('../../constants');
 
@@ -13,7 +13,7 @@ module.exports = {
           displayName: 'buyer',
           passwordHash: await bcrypt.hashSync('Test1234', SALT_ROUNDS),
           email: 'buyer@mail.com',
-          role: 'customer'
+          role: 'customer',
         },
         {
           firstName: 'Creator',
@@ -21,7 +21,7 @@ module.exports = {
           displayName: 'creator',
           passwordHash: await bcrypt.hashSync('Test1234', SALT_ROUNDS),
           email: 'creator@mail.com',
-          role: 'creator'
+          role: 'creator',
         },
         {
           firstName: 'Moderator',
@@ -29,10 +29,10 @@ module.exports = {
           displayName: 'moderator',
           passwordHash: await bcrypt.hashSync('Test1234', SALT_ROUNDS),
           email: 'moderator@mail.com',
-          role: 'moderator'
-        }
+          role: 'moderator',
+        },
       ],
-      {}
+      {},
     );
   },
 
@@ -41,5 +41,5 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  }
+  },
 };

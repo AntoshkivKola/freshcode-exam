@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const {
   env: {
@@ -9,8 +9,8 @@ const {
     ACCESS_TOKEN_SECRET,
     ACCESS_TOKEN_TIME,
     REFRESH_TOKEN_SECRET,
-    REFRESH_TOKEN_TIME
-  }
+    REFRESH_TOKEN_TIME,
+  },
 } = process;
 
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
   ROLES: {
     CUSTOMER: 'customer',
     CREATOR: 'creator',
-    MODERATOR: 'moderator'
+    MODERATOR: 'moderator',
   },
 
   CREATOR_ENTRIES: 'creator_entries',
@@ -38,19 +38,19 @@ module.exports = {
   CONTEST_TYPES: {
     NAME: 'name',
     LOGO: 'logo',
-    TAGLINE: 'tagline'
+    TAGLINE: 'tagline',
   },
   OFFER_STATUSES: {
     PENDING: 'pending',
     REJECTED: 'rejected',
     WON: 'won',
     MODERATED: 'moderated',
-    BANNED: 'banned'
+    BANNED: 'banned',
   },
   CONTESTS_STATUSES: {
     ACTIVE: 'active',
     FINISHED: 'finished',
-    PENDING: 'pending'
+    PENDING: 'pending',
   },
 
   FILES_PATH: 'public/',
@@ -66,5 +66,5 @@ module.exports = {
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',
 
   NEW_MESSAGE: 'newMessage',
-  CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS'
+  CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
 };

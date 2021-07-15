@@ -20,7 +20,7 @@ module.exports.canGetContest = async (req, res, next) => {
   try {
     if (req.tokenData.role === CONSTANTS.ROLES.CUSTOMER) {
       result = await bd.Contest.findOne({
-        where: { id: req.headers.contestid, userId: req.tokenData.userId }
+        where: { id: req.headers.contestid, userId: req.tokenData.userId },
       });
     } else if (req.tokenData.role === CONSTANTS.ROLES.CREATOR) {
       result = await bd.Contest.findOne({
@@ -29,15 +29,15 @@ module.exports.canGetContest = async (req, res, next) => {
           status: {
             [bd.Sequelize.Op.or]: [
               CONSTANTS.CONTESTS_STATUSES.ACTIVE,
-              CONSTANTS.CONTESTS_STATUSES.FINISHED
-            ]
-          }
-        }
+              CONSTANTS.CONTESTS_STATUSES.FINISHED,
+            ],
+          },
+        },
       });
     }
     result ? next() : next(new RightsError());
   } catch (err) {
-    next(new ServerError(e));
+    next(new ServerError(err));
   }
 };
 
@@ -52,9 +52,8 @@ module.exports.onlyForCreative = (req, res, next) => {
 module.exports.onlyForCustomer = (req, res, next) => {
   if (req.tokenData.role === CONSTANTS.ROLES.CREATOR) {
     return next(new RightsError('this page only for customers'));
-  } else {
-    next();
   }
+  next();
 };
 
 module.exports.canSendOffer = async (req, res, next) => {
@@ -64,9 +63,9 @@ module.exports.canSendOffer = async (req, res, next) => {
   try {
     const contest = await bd.Contest.findOne({
       where: {
-        id: req.body.contestId
+        id: req.body.contestId,
       },
-      attributes: ['status']
+      attributes: ['status'],
     });
     if (contest.get('status') === CONSTANTS.CONTESTS_STATUSES.ACTIVE) {
       next();
@@ -84,8 +83,8 @@ module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
       where: {
         userId: req.tokenData.userId,
         id: req.body.contestId,
-        status: CONSTANTS.CONTESTS_STATUSES.ACTIVE
-      }
+        status: CONSTANTS.CONTESTS_STATUSES.ACTIVE,
+      },
     });
     if (!result) {
       return next(new RightsError());
@@ -102,8 +101,8 @@ module.exports.canUpdateContest = async (req, res, next) => {
       where: {
         userId: req.tokenData.userId,
         id: req.body.contestId,
-        status: { [bd.Sequelize.Op.not]: CONSTANTS.CONTESTS_STATUSES.FINISHED }
-      }
+        status: { [bd.Sequelize.Op.not]: CONSTANTS.CONTESTS_STATUSES.FINISHED },
+      },
     });
     if (!result) {
       return next(new RightsError());

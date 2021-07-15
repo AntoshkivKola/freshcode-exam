@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 
 class ServerError extends ApplicationError {
-  constructor (message) {
+  constructor(message) {
     super(message || 'server error', 500);
   }
 }

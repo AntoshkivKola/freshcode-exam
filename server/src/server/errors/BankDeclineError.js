@@ -1,7 +1,7 @@
 const ApplicationError = require('./ApplicationError');
 
 class BankDeclineError extends ApplicationError {
-  constructor (message) {
+  constructor(message) {
     super(message || 'Bank decline transaction', 403);
   }
 }

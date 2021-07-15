@@ -7,8 +7,8 @@ const jwt_decode = require('jwt-decode');
 const AuthService = require('../services/authService');
 const { User, RefreshToken } = require('../models');
 const { ACCESS_TOKEN_SECRET, ACCESS_TOKEN_TIME } = require('../../constants');
+
 const signJWT = promisify(jwt.sign);
-const createHash = promisify(bcrypt.hash);
 
 module.exports.signIn = async (req, res, next) => {
   try {
@@ -82,9 +82,9 @@ module.exports.changePassword = async (req, res, next) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
     const newPassToken = await signJWT(
-      { newPasswordHash: passwordHash, email: email },
+      { newPasswordHash: passwordHash, email },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: ACCESS_TOKEN_TIME }
+      { expiresIn: ACCESS_TOKEN_TIME },
     );
     const decoded = jwt_decode(newPassToken);
 
@@ -110,11 +110,11 @@ module.exports.changePassword = async (req, res, next) => {
         html: `<h2>Hello dear ${user.firstName} ${user.lastName}</h2><br/>
       To confirm your new password click <a target="_blank" href="${linkWithPass}">here</a>`,
       },
-      function (error, response) {
+      (error) => {
         if (error) {
           console.log(error);
         }
-      }
+      },
     );
     return res.status(202).send('Accepted');
   } catch (error) {
@@ -131,7 +131,7 @@ module.exports.updateUserPassword = async (req, res, next) => {
 
     const updatedUser = await User.update(
       { password: newPasswordHash },
-      { where: { email }, returning: true }
+      { where: { email }, returning: true },
     );
     if (!updatedUser) {
       return res.status(404).send('Not found');
