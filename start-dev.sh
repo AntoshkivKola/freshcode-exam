@@ -5,6 +5,8 @@
 #################################
 
 started_at=$(date +"%s")
+export COMPOSE_HTTP_TIMEOUT=120
+export DOCKER_CLIENT_TIMEOUT=120
 
 echo "-----> Provisioning containers"
 docker-compose --file docker-compose-dev.yaml up
