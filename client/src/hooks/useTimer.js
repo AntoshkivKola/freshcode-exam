@@ -13,7 +13,6 @@ function useTimer () {
   const [time, setTime] = useState(new Date(2021, 0, 1, 0, 0, 0))
   useEffect(() => {
     const timeoutId = setTimeout(() => setTime(addSeconds(time, 1)), 1000)
-
     eventsCopy.forEach(event => {
       if (
         !event.isReminded &&
@@ -21,9 +20,6 @@ function useTimer () {
         differenceInSeconds(parseISO(event.reminderDate), new Date()) <= 0
       ) {
         event.isReminded = true
-        console.log(
-          `${event.reminder} start ${event.body} THIS BULL SHIT IS WOOOOORK!!!`
-        )
         localStorage.setItem('events', JSON.stringify(eventsCopy))
       }
       if (
@@ -31,7 +27,6 @@ function useTimer () {
         differenceInSeconds(parseISO(event.deadline), new Date()) <= 0
       ) {
         event.isEnded = true
-        console.log(`END ${event.body}`)
         localStorage.setItem('events', JSON.stringify(eventsCopy))
       }
     })
