@@ -2,30 +2,10 @@ import React, { useEffect, useState } from 'react'
 import cx from 'classnames'
 import styles from './ButtonGroup.module.scss'
 import mainStyles from '../ContestForm/ContestForm.module.sass'
-
-const ButtonGroupContent = [
-  {
-    id: 0,
-    badge: 'Yes',
-    description: 'The Domain should exactly match the name',
-    isActive: false
-  },
-  {
-    id: 1,
-    badge: 'Yes',
-    description: `But minor variations are allowed (Recommended)`,
-    isActive: true
-  },
-  {
-    id: 2,
-    badge: 'No',
-    description: 'I am only looking for a name, not a Domain',
-    isActive: false
-  }
-]
+import CONSTANTS from '../../constants'
 
 const ButtonGroup = props => {
-  const [btnGC, setBtnGC] = useState(ButtonGroupContent)
+  const [btnGC, setBtnGC] = useState(CONSTANTS.BUTTON_GROUP_CONTENT)
 
   let btns
   useEffect(() => {

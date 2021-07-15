@@ -104,5 +104,25 @@ export default {
     { minutes: 1440, value: 'In 1 day' },
     { minutes: 2880, value: 'In 2 day' },
     { minutes: 10080, value: 'In 1 week' }
+  ],
+  BUTTON_GROUP_CONTENT : [
+    {
+      id: 0,
+      badge: 'Yes',
+      description: 'The Domain should exactly match the name',
+      isActive: false
+    },
+    {
+      id: 1,
+      badge: 'Yes',
+      description: `But minor variations are allowed (Recommended)`,
+      isActive: true
+    },
+    {
+      id: 2,
+      badge: 'No',
+      description: 'I am only looking for a name, not a Domain',
+      isActive: false
+    }
   ]
 };

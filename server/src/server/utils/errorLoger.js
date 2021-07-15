@@ -1,9 +1,10 @@
 const fs = require('fs');
+const cron = require('node-cron');
 
 const file = 'src/server/logs/todayLogs.json';
 const path = 'src/server/logs/';
 
-module.exports.createNewLogFile = newFileName => {
+function createNewLogFile (newFileName) {
   fs.access(file, fs.F_OK, findFileError => {
     if (findFileError) {
       return;
@@ -31,7 +32,7 @@ module.exports.createNewLogFile = newFileName => {
       });
     });
   });
-};
+}
 
 module.exports.errorLoger = async function (err) {
   const prerearedStackTrace = {
@@ -69,3 +70,16 @@ module.exports.errorLoger = async function (err) {
     });
   });
 };
+
+(function startLogTimer () {
+  console.log('Start');
+  cron.schedule(
+    '00 00 * * *', //  minute , hour,  day of month, month,  day of week
+    () => {
+      createNewLogFile(new Date().toISOString());
+    },
+    {
+      timezone: 'Europe/Kiev',
+    }
+  );
+})();
