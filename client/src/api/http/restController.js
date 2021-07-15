@@ -1,7 +1,7 @@
-import httpClient from './';
+import httpClient from '.';
 
-export const setNewOffer = data => httpClient.post('setNewOffer', data);
-export const setOfferStatus = data => httpClient.post('setOfferStatus', data);
+export const setNewOffer = (data) => httpClient.post('setNewOffer', data);
+export const setOfferStatus = (data) => httpClient.post('setOfferStatus', data);
 export const changeMark = (data) => httpClient.post('changeMark', data);
 
 export const payMent = (data) => httpClient.post('pay', data.formData);
@@ -20,37 +20,26 @@ export const deleteCatalog = (data) => httpClient.post('deleteCatalog', data);
 export const removeChatFromCatalog = (data) => httpClient.post('removeChatFromCatalog', data);
 export const changeCatalogName = (data) => httpClient.post('updateNameCatalog', data);
 
-export const updateContest = data => httpClient.post('updateContest', data);
-export const downloadContestFile = (data) => httpClient.get('downloadFile/' + data.fileName);
+export const updateContest = (data) => httpClient.post('updateContest', data);
+export const downloadContestFile = (data) => httpClient.get(`downloadFile/${data.fileName}`);
 export const dataForContest = (data) => httpClient.post('dataForContest', data);
-export const getCustomersContests = (data) => {
-    return httpClient.post('getCustomersContests', {limit: data.limit, offset: data.offset}, {
-        headers: {
-            status: data.contestStatus
-        }
-    });
-};
+export const getCustomersContests = (data) => httpClient.post('getCustomersContests', { limit: data.limit, offset: data.offset }, {
+  headers: {
+    status: data.contestStatus,
+  },
+});
 
-export const getActiveContests = ({offset, limit, typeIndex, contestId, industry, awardSort, ownEntries}) => {
-    return httpClient.post('getAllContests', {offset, limit, typeIndex, contestId, industry, awardSort, ownEntries})
-};
+export const getActiveContests = ({
+  offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
+}) => httpClient.post('getAllContests', {
+  offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
+});
 
-export const getContestById = (data) => {
-    return httpClient.get('getContestById', {
-        headers: {
-            contestId: data.contestId
-        }
-    });
-};
+export const getContestById = (data) => httpClient.get('getContestById', {
+  headers: {
+    contestId: data.contestId,
+  },
+});
 
 export const getOffers = (data) => httpClient.post('getOffers', data);
 export const banOrPandingOffer = (data) => httpClient.post('banOrPandingOffer', data);
-
-
-
-
-
-
-
-
-

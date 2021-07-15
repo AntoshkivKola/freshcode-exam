@@ -41,15 +41,19 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook",
-    "build-storybook": "build-storybook -s public"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "build-storybook": "build-storybook -s public",
+    "eslint": "eslint ./src",
+    "eslintFix": "eslint ./src --fix"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  }
 }

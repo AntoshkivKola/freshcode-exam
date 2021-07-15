@@ -19,13 +19,13 @@ export default {
   OFFER_STATUS_PENDING: 'pending',
   STATIC_IMAGES_PATH: '/staticImages/',
   ANONYM_IMAGE_PATH: '/staticImages/anonym.png',
-  BASE_URL: `http://${ hostName }:${ serverPort }/api/`,
-  WS_BASE_URL: `ws://${ hostName }:${ serverPort }`,
+  BASE_URL: `http://${hostName}:${serverPort}/api/`,
+  WS_BASE_URL: `ws://${hostName}:${serverPort}`,
   ACCESS_TOKEN: 'accessToken',
   REFRESH_TOKEN: 'refreshToken',
   publicURL: env === 'production'
-    ? `http://${ hostName }:80/images/`
-    : `http://${ hostName }:${ serverPort }/public/images/`,
+    ? `http://${hostName}:80/images/`
+    : `http://${hostName}:${serverPort}/public/images/`,
   NORMAL_PREVIEW_CHAT_MODE: 'NORMAL_PREVIEW_CHAT_MODE',
   FAVORITE_PREVIEW_CHAT_MODE: 'FAVORITE_PREVIEW_CHAT_MODE',
   BLOCKED_PREVIEW_CHAT_MODE: 'BLOCKED_PREVIEW_CHAT_MODE',
@@ -92,7 +92,7 @@ export default {
       ],
     },
   ],
-  REMINDERS : [
+  REMINDERS: [
     { value: 'Not' },
     { minutes: 0, value: 'At the time of the event' },
     { minutes: 5, value: 'In 5 minutes' },
@@ -103,26 +103,26 @@ export default {
     { minutes: 120, value: 'In 2 hour' },
     { minutes: 1440, value: 'In 1 day' },
     { minutes: 2880, value: 'In 2 day' },
-    { minutes: 10080, value: 'In 1 week' }
+    { minutes: 10080, value: 'In 1 week' },
   ],
-  BUTTON_GROUP_CONTENT : [
+  BUTTON_GROUP_CONTENT: [
     {
       id: 0,
       badge: 'Yes',
       description: 'The Domain should exactly match the name',
-      isActive: false
+      isActive: false,
     },
     {
       id: 1,
       badge: 'Yes',
-      description: `But minor variations are allowed (Recommended)`,
-      isActive: true
+      description: 'But minor variations are allowed (Recommended)',
+      isActive: true,
     },
     {
       id: 2,
       badge: 'No',
       description: 'I am only looking for a name, not a Domain',
-      isActive: false
-    }
-  ]
+      isActive: false,
+    },
+  ],
 };

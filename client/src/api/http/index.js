@@ -1,11 +1,11 @@
-import axios from 'axios'
-import CONTANTS from '../../constants'
-import AuthApi from './AuthApi'
+import axios from 'axios';
+import CONTANTS from '../../constants';
+import AuthApi from './AuthApi';
 
 const httpClient = axios.create({
-  baseURL: CONTANTS.BASE_URL
-})
+  baseURL: CONTANTS.BASE_URL,
+});
 
-export const auth = new AuthApi(httpClient)
+export const auth = new AuthApi(httpClient);
 
-export default httpClient
+export default httpClient;

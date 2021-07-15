@@ -1,5 +1,5 @@
-import {combineReducers} from 'redux';
-import {reducer as formReducer} from 'redux-form';
+import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import authReducer from './authReducer';
 import dataForContestReducer from './dataForContestReducer';
 import payReducer from './payReducer';
@@ -14,22 +14,20 @@ import userProfileReducer from './userProfileReducer';
 import eventsReducer from './eventsReducer';
 import offersReducer from './offersReducer';
 
-
-
-const appReducer=combineReducers({
-   form: formReducer,
-   auth: authReducer, // auth
-   dataForContest: dataForContestReducer,
-   payment: payReducer,
-   contestByIdStore: getContestByIdReducer,
-   contestsList: getContestsReducer,
-   contestStore: storeContestReducer,
-   bundleStore: bundleReducer,
-   updateContestStore: updateContestReducer,
-   chatStore: chatReducer,
-   userProfile: userProfileReducer,
-   eventsStore: eventsReducer,
-   offers: offersReducer,
+const appReducer = combineReducers({
+  form: formReducer,
+  auth: authReducer, // auth
+  dataForContest: dataForContestReducer,
+  payment: payReducer,
+  contestByIdStore: getContestByIdReducer,
+  contestsList: getContestsReducer,
+  contestStore: storeContestReducer,
+  bundleStore: bundleReducer,
+  updateContestStore: updateContestReducer,
+  chatStore: chatReducer,
+  userProfile: userProfileReducer,
+  eventsStore: eventsReducer,
+  offers: offersReducer,
 });
 
 export default appReducer;

@@ -1,44 +1,44 @@
-import ACTION from '../actions/actionTypes'
+import ACTION from '../actions/actionTypes';
 
 const initialState = {
   isFetching: false,
   error: null,
-  offers: []
-}
+  offers: [],
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case ACTION.GET_MODERATOR_OFFERS_REQUEST: {
       return {
         ...state,
-        isFetching: true
-      }
+        isFetching: true,
+      };
     }
     case ACTION.GET_MODERATOR_OFFERS_SUCCESS: {
       return {
         ...state,
         isFetching: false,
         error: null,
-        offers: [...state.offers, ...action.data]
-      }
+        offers: [...state.offers, ...action.data],
+      };
     }
     case ACTION.GET_MODERATOR_OFFERS_ERROR: {
       return {
         ...state,
-        error: action.error
-      }
+        error: action.error,
+      };
     }
     case ACTION.DELETE_MODERATOR_OFFER: {
-      const deletedOfferId = action.data
-      const { offers } = state
-      const newOffers = offers.filter(offer => offer.id !== deletedOfferId)
+      const deletedOfferId = action.data;
+      const { offers } = state;
+      const newOffers = offers.filter((offer) => offer.id !== deletedOfferId);
 
       return {
         ...state,
-        offers: newOffers
-      }
+        offers: newOffers,
+      };
     }
     default:
-      return state
+      return state;
   }
 }
