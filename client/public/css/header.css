@@ -165,10 +165,15 @@
 
 .links-wrapper {
   display: flex;
+  align-items: center;
 }
 .auth-links {
   display: flex;
   flex-wrap: wrap;
+}
+.auth-links > .link{
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .search-icon {
   margin-left: 20px;
