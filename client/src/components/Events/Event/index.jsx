@@ -25,8 +25,7 @@ const Event = props => {
           
         </span>
       </td>
-
-      {/* <span className={styles.eventReminder}> {event.reminder}</span> */}
+     
       <td className={styles.btnCol}>
         <button
           className={styles.eventDeleteBtn}
