@@ -14,7 +14,6 @@ function useGetEvents() {
   // LOGIC get oldEvents
   useEffect(() => {
     const oldEvents = JSON.parse(localStorage.getItem('events'));
-    console.log('oldEvents',oldEvents)
     if (oldEvents) {
       getEvents(oldEvents);
     }

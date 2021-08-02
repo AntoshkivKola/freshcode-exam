@@ -17,7 +17,6 @@ const EventsList = (props) => {
   } = props;
 
   const sortedEvents = sortEvents(events);
-  console.log('events list', events)
   return (
     <div>
       <h3 className={styles.eventTableTitle}>Ended events </h3>
