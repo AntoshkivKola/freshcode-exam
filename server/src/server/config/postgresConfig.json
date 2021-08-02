@@ -2,9 +2,9 @@
   "development": {
     "user": "postgres",
     "username": "postgres",
-    "password": "password",
-    "database": "todo-dev",
-    "host": "db-dev",
+    "password": "postgres",
+    "database": "sqh-dev",
+    "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": "Op",
     "seedersStorage": "sequelize",
