@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import cx from 'classnames'
 import styles from './ButtonGroup.module.scss'
 import mainStyles from '../ContestForm/ContestForm.module.sass'
@@ -6,11 +6,6 @@ import CONSTANTS from '../../constants'
 
 const ButtonGroup = props => {
   const [btnGC, setBtnGC] = useState(CONSTANTS.BUTTON_GROUP_CONTENT)
-
-  let btns
-  useEffect(() => {
-    btns = document.querySelector('#buttonGroup').childNodes
-  })
 
   const toggleActiveBtn = ({ currentTarget }) => {
     const copyBtnGC = JSON.parse(JSON.stringify(btnGC))
