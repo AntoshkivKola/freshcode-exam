@@ -31,7 +31,7 @@ class Header extends React.Component{
                             <li><Link to='http:/www.google.com'
                                       style={{textDecoration: 'none'}}><span>Messages</span></Link></li>
                             <li className={styles.eventsLink}>
-                                {this.countReminderEvents() ? <div className={styles.countEvents}>{this.countReminderEvents()}</div>: null}  {/* // TODO  */}
+                                {this.countReminderEvents() ? <div className={styles.countEvents}>{this.countReminderEvents()}</div>: null}
                                 <Link to='/events'
                                       style={{textDecoration: 'none'}}><span>Events</span></Link></li>
                                       
@@ -39,7 +39,7 @@ class Header extends React.Component{
                             </li>
                             <li><span onClick={this.logOut}>Logout</span></li>
                         </ul>
-                        {this.countReminderEvents() ? <div className={styles.countEvents}>{this.countReminderEvents()}</div>: null}  {/* // TODO  */}
+                        {this.countReminderEvents() ? <div className={styles.countEvents}>{this.countReminderEvents()}</div>: null}
                     </div>
                     <img src={`${CONSTANTS.STATIC_IMAGES_PATH}email.png`} className={styles.emailIcon} alt='email'/>
                 </>
