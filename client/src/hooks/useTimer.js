@@ -11,7 +11,7 @@ function useTimer() {
   // LOGIC timer
   const [time, setTime] = useState(new Date(2021, 0, 1, 0, 0, 0));
   useEffect(() => {
-    const timeoutId = setTimeout(() => setTime(addSeconds(time, 1)), 1000);
+    const timeoutId = setTimeout(() => setTime(addSeconds(time, 1)), 5000);
     eventsCopy.forEach((event) => {
       if (
         !event.isReminded
