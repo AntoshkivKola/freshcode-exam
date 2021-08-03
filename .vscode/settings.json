@@ -19,6 +19,26 @@
       "database": "sqh_test",
       "username": "postgres",
       "password": "postgres"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "t2",
+      "database": "sqh_test",
+      "username": "postgres",
+      "password": "postgres"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "d1",
+      "database": "sqh_dev",
+      "username": "postgres",
+      "password": "postgres"
     }
   ]
 }

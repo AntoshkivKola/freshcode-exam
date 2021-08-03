@@ -3,6 +3,9 @@ const cors = require('cors');
 const router = require('./server/router');
 const ErrorHandlers = require('./server/handlerError/handler');
 
+if (process.env.NODE_ENV === 'test') {
+  require('dotenv').config();
+}
 
 const createApp = () => {
   const app = express();
