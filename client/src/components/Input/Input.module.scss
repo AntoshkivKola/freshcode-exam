@@ -4,7 +4,7 @@
   border-radius: 4px;
   border: 2px solid transparent;
   font-size: 18px;
-  min-width: 290px;
+  min-width: 260px;
   width: 100%;
 }
 .notValid {
@@ -15,6 +15,10 @@
 }
 .inputContainer {
   position: relative;
+   @media(max-width: 1340px){
+
+     width: 100%;
+   }
 }
 .errorMessage {
   z-index: 2;
