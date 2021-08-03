@@ -2,26 +2,15 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import UpdateUserInfoForm from '../../components/UpdateUserInfoForm/UpdateUserInfoForm';
-import {updateUserData, changeEditModeOnUserProfile} from '../../actions/actionCreator';
+import { changeEditModeOnUserProfile} from '../../actions/actionCreator';
 import CONSTANTS from '../../constants';
 import styles from './UserInfo.module.sass';
 
 const UserInfo = (props) => {
-
-    const updateUserData = (values) => {
-        const formData = new FormData();
-        formData.append('file', values.file);
-        formData.append('firstName', values.firstName);
-        formData.append('lastName', values.lastName);
-        formData.append('displayName', values.displayName);
-        props.updateUser(formData);
-    };
-
-
     const {isEdit, changeEditMode, user:{avatar, firstName, lastName, displayName, email, role, balance}} = props;
     return (
         <div className={styles.mainContainer}>
-            {isEdit ? <UpdateUserInfoForm onSubmit={updateUserData}/>
+            {isEdit ? <UpdateUserInfoForm/>
                 :
                 <div className={styles.infoContainer}>
                     <img src={avatar ? `${CONSTANTS.publicURL}${avatar}`: CONSTANTS.ANONYM_IMAGE_PATH } className={styles.avatar} alt='user'/>
@@ -67,7 +56,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateUser: (data) => dispatch(updateUserData(data)),
         changeEditMode: (data) => dispatch(changeEditModeOnUserProfile(data))
     }
 };
