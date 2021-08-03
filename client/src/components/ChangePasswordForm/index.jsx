@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changePassword, clearAuth } from "../../actions/actionCreator";
-import styles from "./ChangePasswordForm.module.scss";
 import { Formik, Form } from "formik";
+import { changePassword, clearAuth } from "../../actions/actionCreator";
 import Input from "../Input";
 import Schems from "../../validators/validationSchems";
 import Error from "../Error/Error";
+import styles from "./ChangePasswordForm.module.scss";
+import commonStyles from '../../styles/common.module.scss';
 
 const ChangePasswordForm = (props) => {
   const { error, isFetching, checkMail } = props.auth;
@@ -35,7 +36,7 @@ const ChangePasswordForm = (props) => {
         )}
         <h2>CHANGE YOUR PASSWORD</h2>
 
-        <Form className={styles.form}>
+        <Form className={commonStyles.form}>
           <Input name="email" type="email" placeholder="Email Address" />
           <Input name="password" type="password" placeholder="New Password" />
 
