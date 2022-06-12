@@ -84,8 +84,8 @@ router.post(//put
   userController.changeMark,
 );
 
-router.post(//put
-  '/updateUser',
+router.put(
+  '/user',
 
   upload.uploadAvatar,
   userController.updateUser,

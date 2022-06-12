@@ -6,7 +6,7 @@ export const changeMark = (data) => httpClient.post('changeMark', data);
 
 export const payMent = (data) => httpClient.post('pay', data.formData);
 export const cashOut = (data) => httpClient.post('cashout', data);
-export const updateUser = (data) => httpClient.post('updateUser', data);
+export const updateUser = (data) => httpClient.put('user', data);
 
 export const getPreviewChat = () => httpClient.post('getPreview');
 export const getDialog = (data) => httpClient.post('getChat', data);
