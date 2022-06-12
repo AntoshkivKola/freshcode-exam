@@ -1,6 +1,6 @@
 import httpClient from '.';
 
-export const setNewOffer = (data) => httpClient.post('setNewOffer', data);
+export const setNewOffer = (data) => httpClient.post(`/contest/${data.get('contestId')}/offer`, data);
 export const setOfferStatus = (data) => httpClient.post('setOfferStatus', data);
 export const changeMark = (data) => httpClient.post('changeMark', data);
 

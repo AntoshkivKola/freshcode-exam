@@ -63,7 +63,7 @@ router.put(
 );
 
 router.post(
-  '/setNewOffer',
+  '/contest/:id/offer',
 
   upload.uploadLogoFiles,
   basicMiddlewares.canSendOffer,
