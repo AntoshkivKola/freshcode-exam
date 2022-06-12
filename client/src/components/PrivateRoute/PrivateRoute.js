@@ -17,7 +17,7 @@ const PrivateRoute = ({ roles, ...rest }) => {
     return <Route {...rest} />
   }
 
-  return null // TODO: fix null render 
+  return <Redirect to='/login' />
 }
 
 export default PrivateRoute
