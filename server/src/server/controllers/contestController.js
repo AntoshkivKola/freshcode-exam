@@ -11,7 +11,7 @@ module.exports.dataForContest = async (req, res, next) => {
   try {
     const payload = {};
     const {
-      body: { characteristic1, characteristic2 },
+      query: { characteristic1, characteristic2 },
     } = req;
     const predicate = [characteristic1, characteristic2, 'industry'].filter(
       Boolean,
@@ -300,11 +300,13 @@ module.exports.setOfferStatus = async (req, res, next) => {
   }
 };
 
-module.exports.getCustomersContests = (req, res, next) => {
+module.exports.getCustomersContests = (req, res, next) => {//
+  const { limit, offset } = req.query;
+
   db.Contest.findAll({
     where: { status: req.headers.status, userId: req.tokenData.userId },
-    limit: req.body.limit,
-    offset: req.body.offset ? req.body.offset : 0,
+    limit,
+    offset: offset ? offset : 0,
     order: [['id', 'DESC']],
     include: [
       {

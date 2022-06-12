@@ -22,8 +22,13 @@ export const changeCatalogName = (data) => httpClient.post('updateNameCatalog', 
 
 export const updateContest = (data) => httpClient.post('updateContest', data);
 export const downloadContestFile = (data) => httpClient.get(`downloadFile/${data.fileName}`);
-export const dataForContest = (data) => httpClient.post('dataForContest', data);
-export const getCustomersContests = (data) => httpClient.post('getCustomersContests', { limit: data.limit, offset: data.offset }, {
+export const dataForContest = (data) => httpClient.get('contests_data', {
+  params: data
+});
+export const getCustomersContests = (data) => httpClient.get('contests', {
+  params: {
+    limit: data.limit, offset: data.offset
+  },
   headers: {
     status: data.contestStatus,
   },

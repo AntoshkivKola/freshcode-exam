@@ -14,8 +14,8 @@ router.use('/auth', authRouter);
 
 router.use(checkAccessToken);
 
-router.post(
-  '/dataForContest',
+router.get(
+  '/contests_data',
   contestController.dataForContest,
 );
 
@@ -29,8 +29,8 @@ router.post(
   userController.payment,
 );
 
-router.post(
-  '/getCustomersContests',
+router.get(
+  '/contests',
 
   contestController.getCustomersContests,
 );
