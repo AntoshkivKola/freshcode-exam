@@ -25,7 +25,7 @@ export const downloadContestFile = (data) => httpClient.get(`downloadFile/${data
 export const dataForContest = (data) => httpClient.get('contests_data', {
   params: data
 });
-export const getCustomersContests = (data) => httpClient.get('contests', {
+export const getCustomersContests = (data) => httpClient.get('/customer/contests', {
   params: {
     limit: data.limit, offset: data.offset
   },
@@ -36,8 +36,10 @@ export const getCustomersContests = (data) => httpClient.get('contests', {
 
 export const getActiveContests = ({
   offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
-}) => httpClient.post('getAllContests', {
-  offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
+}) => httpClient.get('creative/contests', {
+  params: {
+    offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
+  }
 });
 
 export const getContestById = (data) => httpClient.get(`contest/${data.contestId}`);

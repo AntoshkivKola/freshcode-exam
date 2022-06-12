@@ -30,7 +30,7 @@ router.post(
 );
 
 router.get(
-  '/contests',
+  '/customer/contests',
 
   contestController.getCustomersContests,
 );
@@ -42,8 +42,8 @@ router.get(
   contestController.getContestById,
 );
 
-router.post(
-  '/getAllContests',
+router.get(
+  '/creative/contests',
 
   basicMiddlewares.onlyForCreative,
   contestController.getContests,
@@ -77,14 +77,14 @@ router.post(
   contestController.setOfferStatus,
 );
 
-router.post(
+router.post(//put
   '/changeMark',
 
   basicMiddlewares.onlyForCustomer,
   userController.changeMark,
 );
 
-router.post(
+router.post(//put
   '/updateUser',
 
   upload.uploadAvatar,
@@ -100,9 +100,9 @@ router.post(
 
 router.post('/newMessage', chatControllerSQL.addMessage);// chatController.addMessage,
 
-router.post('/getChat', chatControllerSQL.getChat);
+router.post('/getChat', chatControllerSQL.getChat);//get
 
-router.post('/getPreview', chatControllerSQL.getPreview);
+router.post('/getPreview', chatControllerSQL.getPreview);//get
 
 router.post('/blackList', chatControllerSQL.blackList);
 
@@ -110,17 +110,17 @@ router.post('/favorite', chatControllerSQL.favoriteChat);
 
 router.post('/createCatalog', chatControllerSQL.createCatalog);
 
-router.post('/updateNameCatalog', chatControllerSQL.updateNameCatalog);
+router.post('/updateNameCatalog', chatControllerSQL.updateNameCatalog);//put
 
 router.post('/addNewChatToCatalog', chatControllerSQL.addNewChatToCatalog);
 
-router.post('/removeChatFromCatalog', chatControllerSQL.removeChatFromCatalog);
+router.post('/removeChatFromCatalog', chatControllerSQL.removeChatFromCatalog);//delete
 
-router.post('/deleteCatalog', chatControllerSQL.deleteCatalog);
+router.post('/deleteCatalog', chatControllerSQL.deleteCatalog);//delete
 
-router.post('/getCatalogs', chatControllerSQL.getCatalogs);
+router.post('/getCatalogs', chatControllerSQL.getCatalogs);//get
 
-router.post('/getOffers', contestController.getModeratorOffers);
+router.post('/getOffers', contestController.getModeratorOffers);//get
 router.post('/banOrPandingOffer', contestController.banOrPandingOffer);
 
 module.exports = router;
