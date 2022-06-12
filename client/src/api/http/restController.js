@@ -20,7 +20,7 @@ export const deleteCatalog = (data) => httpClient.post('deleteCatalog', data);
 export const removeChatFromCatalog = (data) => httpClient.post('removeChatFromCatalog', data);
 export const changeCatalogName = (data) => httpClient.post('updateNameCatalog', data);
 
-export const updateContest = (data) => httpClient.post('updateContest', data);
+export const updateContest = (data) => httpClient.put(`contest/${data.get('contestId')}`, data);
 export const downloadContestFile = (data) => httpClient.get(`downloadFile/${data.fileName}`);
 export const dataForContest = (data) => httpClient.get('contests_data', {
   params: data

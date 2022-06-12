@@ -55,8 +55,8 @@ router.get(
   contestController.downloadFile,
 );
 
-router.post(
-  '/updateContest',
+router.put(
+  '/contest/:id',
 
   upload.updateContestFile,
   contestController.updateContest,
