@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changePassword, clearAuth } from '../../actions/actionCreator'
-import { Redirect } from 'react-router-dom'
 import styles from './ChangePasswordForm.module.scss'
 import { Field, reduxForm } from 'redux-form'
 import FormInput from '../FormInput/FormInput'
