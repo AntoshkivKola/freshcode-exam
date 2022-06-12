@@ -20,12 +20,12 @@ module.exports.canGetContest = async (req, res, next) => {
   try {
     if (req.tokenData.role === CONSTANTS.ROLES.CUSTOMER) {
       result = await bd.Contest.findOne({
-        where: { id: req.headers.contestid, userId: req.tokenData.userId },
+        where: { id: req.params.id, userId: req.tokenData.userId },
       });
     } else if (req.tokenData.role === CONSTANTS.ROLES.CREATOR) {
       result = await bd.Contest.findOne({
         where: {
-          id: req.headers.contestid,
+          id: req.params.id,
           status: {
             [bd.Sequelize.Op.or]: [
               CONSTANTS.CONTESTS_STATUSES.ACTIVE,

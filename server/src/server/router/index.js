@@ -36,7 +36,7 @@ router.post(
 );
 
 router.get(
-  '/getContestById',
+  '/contest/:id',
 
   basicMiddlewares.canGetContest,
   contestController.getContestById,

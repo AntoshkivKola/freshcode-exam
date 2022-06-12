@@ -35,11 +35,7 @@ export const getActiveContests = ({
   offset, limit, typeIndex, contestId, industry, awardSort, ownEntries,
 });
 
-export const getContestById = (data) => httpClient.get('getContestById', {
-  headers: {
-    contestId: data.contestId,
-  },
-});
+export const getContestById = (data) => httpClient.get(`contest/${data.contestId}`);
 
 export const getOffers = (data) => httpClient.post('getOffers', data);
 export const banOrPandingOffer = (data) => httpClient.post('banOrPandingOffer', data);
