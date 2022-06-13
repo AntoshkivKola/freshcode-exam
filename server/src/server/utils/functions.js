@@ -46,3 +46,11 @@ module.exports.createWhereForAllContests = (
   option.order.push(['id', 'desc']);
   return option;
 };
+
+module.exports.parseQueryParameter = (param, query) => {
+  if(query[param]) {
+    return JSON.parse(query[param]);
+  }
+
+  return query[param];
+};

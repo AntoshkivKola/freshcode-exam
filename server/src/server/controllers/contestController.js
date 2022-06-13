@@ -338,7 +338,13 @@ module.exports.getCustomersContests = (req, res, next) => {//
 };
 
 module.exports.getContests = (req, res, next) => {
-  const { offset, limit, typeIndex, contestId, industry, awardSort, ownEntries } = req.query;
+  const offset = UtilFunctions.parseQueryParameter('offset', req.query);
+  const limit = UtilFunctions.parseQueryParameter('limit', req.query);
+  const typeIndex = UtilFunctions.parseQueryParameter('typeIndex', req.query);
+  const contestId = UtilFunctions.parseQueryParameter('contestId', req.query);
+  const industry = UtilFunctions.parseQueryParameter('industry', req.query);
+  const awardSort =  req.query.awardSort;
+  const ownEntries = UtilFunctions.parseQueryParameter('ownEntries', req.query);
 
   const predicates = UtilFunctions.createWhereForAllContests(
     typeIndex,
