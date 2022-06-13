@@ -71,14 +71,14 @@ router.post(
 );
 
 router.post(
-  '/setOfferStatus',
+  '/offer/:id/status',
 
   basicMiddlewares.onlyForCustomerWhoCreateContest,
   contestController.setOfferStatus,
 );
 
-router.post(//put
-  '/changeMark',
+router.put(
+  '/offer/:id/mark',
 
   basicMiddlewares.onlyForCustomer,
   userController.changeMark,

@@ -22,9 +22,8 @@ module.exports.changeMark = async (req, res, next) => {
   let sum = 0;
   let avg = 0;
   let transaction;
-  const {
-    isFirst, offerId, mark, creatorId,
-  } = req.body;
+  const { isFirst, mark, creatorId } = req.body;
+  const offerId = req.params.id;
   const { userId } = req.tokenData;
   try {
     transaction = await db.sequelize.transaction(

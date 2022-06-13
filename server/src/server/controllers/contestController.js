@@ -270,11 +270,12 @@ module.exports.banOrPandingOffer = async (req, res, next) => {
 };
 
 module.exports.setOfferStatus = async (req, res, next) => {
+  const offerId = req.params.id;
   let transaction;
   if (req.body.command === 'reject') {
     try {
       const offer = await rejectOffer(
-        req.body.offerId,
+        offerId,
         req.body.creatorId,
         req.body.contestId,
       );
@@ -289,7 +290,7 @@ module.exports.setOfferStatus = async (req, res, next) => {
         req.body.contestId,
         req.body.creatorId,
         req.body.orderId,
-        req.body.offerId,
+        offerId,
         req.body.priority,
         transaction,
       );
