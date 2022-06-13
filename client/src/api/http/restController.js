@@ -14,7 +14,7 @@ export const getDialog = (data) => httpClient.get('chat', {
 });
 export const newMessage = (data) => httpClient.post('message', data);
 export const changeChatFavorite = (data) => httpClient.post('favorite', data);
-export const changeChatBlock = (data) => httpClient.post('blackList', data);
+export const changeChatBlock = (data) => httpClient.post('blacklist', data);
 export const getCatalogList = () => httpClient.get('catalogs');
 export const addChatToCatalog = (data) => httpClient.post(`catalog/${data.catalogId}/chat/${data.chatId}`, data);
 export const createCatalog = (data) => httpClient.post('catalog', data);
@@ -46,5 +46,5 @@ export const getActiveContests = ({
 
 export const getContestById = (data) => httpClient.get(`contest/${data.contestId}`);
 
-export const getOffers = (data) => httpClient.post('getOffers', data);
-export const banOrPandingOffer = (data) => httpClient.post('banOrPandingOffer', data);
+export const getOffers = (data) => httpClient.get('offers', { params: data });
+export const banOrPandingOffer = (data) => httpClient.post('moderate_offer', data);
