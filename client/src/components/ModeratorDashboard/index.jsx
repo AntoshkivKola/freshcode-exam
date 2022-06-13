@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import {
   getModeratorOffers,
   setModeratorOfferStatus
@@ -50,7 +51,8 @@ const ModeratorDashboard = props => {
   const loadMore = () => getOffers({ limit: 5, offset: offers.length })
   return (
     <div className={styles.offersContainer}>
-      {offers.map(offer => (
+      {_.uniqBy(offers, (offer) => offer.id)
+          .map(offer => (
         <ModeratorOfferBox
           key={offer.id}
           changeOfferStatus={changeOfferStatus}
