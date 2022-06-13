@@ -383,13 +383,15 @@ module.exports.getContests = (req, res, next) => {
 module.exports.getModeratorOffers = async (req, res, next) => {
   try {
     console.log('getting offers>>>>>>>>>>');
-    const { body: pagination } = req;
+    const offset = UtilFunctions.parseQueryParameter('offset', req.query);
+    const limit = UtilFunctions.parseQueryParameter('limit', req.query);
 
     const offers = await db.Offer.findAll({
       where: { status: CONSTANTS.OFFER_STATUSES.MODERATED },
       attributes: { exclude: ['userId', 'contestId'] },
       order: [['id', 'asc']],
-      ...pagination,
+      limit,
+      offset,
       include: [
         {
           model: db.User,

@@ -120,7 +120,7 @@ router.delete('/catalog/:catalogId', chatControllerSQL.deleteCatalog);
 
 router.get('/catalogs', chatControllerSQL.getCatalogs);
 
-router.post('/getOffers', contestController.getModeratorOffers);//get
-router.post('/banOrPandingOffer', contestController.banOrPandingOffer);
+router.get('/offers', contestController.getModeratorOffers);//get
+router.post('/moderate_offer', contestController.banOrPandingOffer);
 
 module.exports = router;
