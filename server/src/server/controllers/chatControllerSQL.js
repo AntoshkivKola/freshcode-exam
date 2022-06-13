@@ -70,7 +70,8 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 module.exports.getChat = async (req, res, next) => {
-  const participants = [req.tokenData.userId, req.body.interlocutorId];
+  const interlocutorId = JSON.parse(req.query.interlocutorId);
+  const participants = [req.tokenData.userId, interlocutorId];
   participants.sort(
     (participant1, participant2) => participant1 - participant2,
   );
@@ -78,7 +79,7 @@ module.exports.getChat = async (req, res, next) => {
     const messages = await Message.getMessages(participants);
 
     const interlocutor = await userQueries.findUser({
-      id: req.body.interlocutorId,
+      id: interlocutorId,
     });
     res.send({
       messages,
@@ -196,7 +197,7 @@ module.exports.getCatalogs = async (req, res, next) => {
 module.exports.updateNameCatalog = async (req, res, next) => {
   try {
     const catalog = await Catalog.updateNameCatalog({
-      _id: req.body.catalogId,
+      _id: +req.params.id,
       catalogName: req.body.catalogName,
     });
     res.send(catalog);
@@ -207,8 +208,10 @@ module.exports.updateNameCatalog = async (req, res, next) => {
 
 module.exports.deleteCatalog = async (req, res, next) => {
   try {
+    const catalogId = +req.params.catalogId;
+
     await Catalog.remove({
-      _id: req.body.catalogId,
+      _id: catalogId,
       userId: req.tokenData.userId,
     });
     res.end();
@@ -219,10 +222,19 @@ module.exports.deleteCatalog = async (req, res, next) => {
 
 module.exports.addNewChatToCatalog = async (req, res, next) => {
   try {
+    const chatId = +req.params.chatId;
+    const catalogId = +req.params.catalogId;
+    const catalogs = await Catalog.getCatalogs(req.tokenData.userId);
+    const catalogToInsert = catalogs.find(({ _id }) => _id === catalogId);
+
+    if (catalogToInsert.chats.includes(chatId)) {
+      return res.sendStatus(200);
+    }
+
     const catalog = await Catalog.addNewChatToCatalog({
-      _id: req.body.catalogId,
+      _id: catalogId,
       userId: req.tokenData.userId,
-      chat: req.body.chatId,
+      chat: chatId,
     });
     res.send(catalog);
   } catch (err) {
@@ -232,10 +244,13 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
 
 module.exports.removeChatFromCatalog = async (req, res, next) => {
   try {
+    const chatId = +req.params.chatId;
+    const catalogId = +req.params.catalogId;
+
     const catalog = await Catalog.removeChatFromCatalog({
-      _id: req.body.catalogId,
+      _id: catalogId,
       userId: req.tokenData.userId,
-      chat: req.body.chatId,
+      chat: chatId,
     });
     res.send(catalog);
   } catch (err) {

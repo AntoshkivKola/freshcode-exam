@@ -98,27 +98,27 @@ router.post(
   userController.cashout,
 );
 
-router.post('/newMessage', chatControllerSQL.addMessage);// chatController.addMessage,
+router.post('/message', chatControllerSQL.addMessage);// chatController.addMessage,
 
-router.post('/getChat', chatControllerSQL.getChat);//get
+router.get('/chat', chatControllerSQL.getChat);
 
-router.post('/getPreview', chatControllerSQL.getPreview);//get
+router.get('/chat/preview', chatControllerSQL.getPreview);
 
 router.post('/blackList', chatControllerSQL.blackList);
 
 router.post('/favorite', chatControllerSQL.favoriteChat);
 
-router.post('/createCatalog', chatControllerSQL.createCatalog);
+router.post('/catalog', chatControllerSQL.createCatalog);
 
-router.post('/updateNameCatalog', chatControllerSQL.updateNameCatalog);//put
+router.put('/catalog/:id', chatControllerSQL.updateNameCatalog);
 
-router.post('/addNewChatToCatalog', chatControllerSQL.addNewChatToCatalog);
+router.post('/catalog/:catalogId/chat/:chatId', chatControllerSQL.addNewChatToCatalog);
 
-router.post('/removeChatFromCatalog', chatControllerSQL.removeChatFromCatalog);//delete
+router.delete('/catalog/:catalogId/chat/:chatId', chatControllerSQL.removeChatFromCatalog);
 
-router.post('/deleteCatalog', chatControllerSQL.deleteCatalog);//delete
+router.delete('/catalog/:catalogId', chatControllerSQL.deleteCatalog);
 
-router.post('/getCatalogs', chatControllerSQL.getCatalogs);//get
+router.get('/catalogs', chatControllerSQL.getCatalogs);
 
 router.post('/getOffers', contestController.getModeratorOffers);//get
 router.post('/banOrPandingOffer', contestController.banOrPandingOffer);

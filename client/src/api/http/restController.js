@@ -8,17 +8,19 @@ export const payMent = (data) => httpClient.post('pay', data.formData);
 export const cashOut = (data) => httpClient.post('cashout', data);
 export const updateUser = (data) => httpClient.put('user', data);
 
-export const getPreviewChat = () => httpClient.post('getPreview');
-export const getDialog = (data) => httpClient.post('getChat', data);
-export const newMessage = (data) => httpClient.post('newMessage', data);
+export const getPreviewChat = () => httpClient.get('chat/preview');
+export const getDialog = (data) => httpClient.get('chat', {
+  params: data
+});
+export const newMessage = (data) => httpClient.post('message', data);
 export const changeChatFavorite = (data) => httpClient.post('favorite', data);
 export const changeChatBlock = (data) => httpClient.post('blackList', data);
-export const getCatalogList = (data) => httpClient.post('getCatalogs', data);
-export const addChatToCatalog = (data) => httpClient.post('addNewChatToCatalog', data);
-export const createCatalog = (data) => httpClient.post('createCatalog', data);
-export const deleteCatalog = (data) => httpClient.post('deleteCatalog', data);
-export const removeChatFromCatalog = (data) => httpClient.post('removeChatFromCatalog', data);
-export const changeCatalogName = (data) => httpClient.post('updateNameCatalog', data);
+export const getCatalogList = () => httpClient.get('catalogs');
+export const addChatToCatalog = (data) => httpClient.post(`catalog/${data.catalogId}/chat/${data.chatId}`, data);
+export const createCatalog = (data) => httpClient.post('catalog', data);
+export const deleteCatalog = (data) => httpClient.delete(`catalog/${data.catalogId}`);
+export const removeChatFromCatalog = (data) => httpClient.delete(`catalog/${data.catalogId}/chat/${data.chatId}`);
+export const changeCatalogName = (data) => httpClient.put(`catalog/${data.catalogId}`, data);
 
 export const updateContest = (data) => httpClient.put(`contest/${data.get('contestId')}`, data);
 export const downloadContestFile = (data) => httpClient.get(`downloadFile/${data.fileName}`);
